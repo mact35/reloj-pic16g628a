@@ -1016,7 +1016,7 @@ extern __bank0 __bit __timeout;
 # 17 "main.c" 2
 
 
-int x;
+int h1, h2, m1, m2;
 
 void writeBit(char _bit)
 {
@@ -1027,6 +1027,7 @@ void writeBit(char _bit)
 }
 
 void writeNumber(int num){
+    RB6 = 0;
     switch (num)
     {
         case 1:
@@ -1131,45 +1132,57 @@ void writeNumber(int num){
             break;
 
     }
-
-}
-
-void write()
-{
-    for(x=0; x<10; x++)
-    {
-        RB6 = 0;
-        writeNumber(x);
-        RB6 = 1;
-        _delay((unsigned long)((500)*(4000000/4000.0)));
-    }
+    RB6 = 1;
 }
 
 void main(void) {
     TRISB=0b00000000;
     PORTB = 0;
 
+    h1 = 0;
+    h2 = 0;
+    m1 = 0;
+    m2 = 0;
+
     while(1){
         RB1 = 1;
         RB2 = 0;
         RB3 = 0;
         RB4 = 0;
-        write();
+        writeNumber(h1);
         RB1 = 0;
         RB2 = 1;
         RB3 = 0;
         RB4 = 0;
-        write();
+        writeNumber(h2);
         RB1 = 0;
         RB2 = 0;
         RB3 = 1;
         RB4 = 0;
-        write();
+        writeNumber(m1);
         RB1 = 0;
         RB2 = 0;
         RB3 = 0;
         RB4 = 1;
-        write();
+        writeNumber(m2);
+        m2 = m2 + 1;
+        if (1 == 0){
+            if (m2 > 9){
+                m2 = 0;
+                m1 = m1 + 1;
+            }
+            if (m1 > 5){
+                m1 = 0;
+                h1 = h1 + 1;
+            }
+            if (h2 > 9){
+                h2 = 0;
+                h1 = h1 + 1;
+            }
+            if (h1 > 2){
+                h1 = 0;
+            }
+        }
     }
     return;
 }
