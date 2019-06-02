@@ -1165,8 +1165,8 @@ void main(void) {
         RB3 = 0;
         RB4 = 1;
         writeNumber(m2);
-        m2 = m2 + 1;
         if (1 == 0){
+            m2 = m2 + 1;
             if (m2 > 9){
                 m2 = 0;
                 m1 = m1 + 1;

@@ -14,11 +14,11 @@
 $dist/default/production\reloj_4_seg.X.production.o
 cinit CODE 0 7F6 7F6 A 2
 text1 CODE 0 71F 71F D7 2
-text2 CODE 0 6CC 6CC 10 2
-maintext CODE 0 6DC 6DC 43 2
+text2 CODE 0 6D4 6D4 10 2
+maintext CODE 0 6E4 6E4 3B 2
 cstackCOMMON COMMON 1 78 78 3 1
 bssCOMMON COMMON 1 70 70 8 1
-$C:\Users\mact3\AppData\Local\Temp\sfho.o
+$C:\Users\mact3\AppData\Local\Temp\se14.o
 end_init CODE 0 0 0 1 2
 config CONFIG 0 2007 2007 1 2
 # %UNUSED Section
@@ -33,19 +33,19 @@ RAM 120-14F 1
 BANK0 20-6F 1
 BANK1 A0-EF 1
 BANK2 120-14F 1
-CONST 1-6CB 2
-ENTRY 1-6CB 2
+CONST 1-6D3 2
+ENTRY 1-6D3 2
 IDLOC 2000-2003 2
 STACK 20-6F 1
-CODE 1-6CB 2
+CODE 1-6D3 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-11F 1
 SFR3 180-1EF 1
 COMMON 7B-7D 1
 EEDATA 2100-217F 2
-STRCODE 1-6CB 2
-STRING 1-6CB 2
+STRCODE 1-6D3 2
+STRING 1-6D3 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -60,25 +60,25 @@ STRING 1-6CB 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\reloj_4_seg.X.production.o
-7F6 cinit CODE >282:C:\Users\mact3\AppData\Local\Temp\sfho.
-7F6 cinit CODE >285:C:\Users\mact3\AppData\Local\Temp\sfho.
-7F6 cinit CODE >305:C:\Users\mact3\AppData\Local\Temp\sfho.
-7F7 cinit CODE >306:C:\Users\mact3\AppData\Local\Temp\sfho.
-7F8 cinit CODE >307:C:\Users\mact3\AppData\Local\Temp\sfho.
-7F9 cinit CODE >308:C:\Users\mact3\AppData\Local\Temp\sfho.
-7FA cinit CODE >309:C:\Users\mact3\AppData\Local\Temp\sfho.
-7FB cinit CODE >310:C:\Users\mact3\AppData\Local\Temp\sfho.
-7FC cinit CODE >311:C:\Users\mact3\AppData\Local\Temp\sfho.
-7FD cinit CODE >312:C:\Users\mact3\AppData\Local\Temp\sfho.
-7FE cinit CODE >318:C:\Users\mact3\AppData\Local\Temp\sfho.
-7FE cinit CODE >320:C:\Users\mact3\AppData\Local\Temp\sfho.
-7FF cinit CODE >321:C:\Users\mact3\AppData\Local\Temp\sfho.
-6CC text2 CODE >21:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6CD text2 CODE >23:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6D0 text2 CODE >24:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6D9 text2 CODE >25:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6DA text2 CODE >26:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6DB text2 CODE >27:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+7F6 cinit CODE >282:C:\Users\mact3\AppData\Local\Temp\se14.
+7F6 cinit CODE >285:C:\Users\mact3\AppData\Local\Temp\se14.
+7F6 cinit CODE >305:C:\Users\mact3\AppData\Local\Temp\se14.
+7F7 cinit CODE >306:C:\Users\mact3\AppData\Local\Temp\se14.
+7F8 cinit CODE >307:C:\Users\mact3\AppData\Local\Temp\se14.
+7F9 cinit CODE >308:C:\Users\mact3\AppData\Local\Temp\se14.
+7FA cinit CODE >309:C:\Users\mact3\AppData\Local\Temp\se14.
+7FB cinit CODE >310:C:\Users\mact3\AppData\Local\Temp\se14.
+7FC cinit CODE >311:C:\Users\mact3\AppData\Local\Temp\se14.
+7FD cinit CODE >312:C:\Users\mact3\AppData\Local\Temp\se14.
+7FE cinit CODE >318:C:\Users\mact3\AppData\Local\Temp\se14.
+7FE cinit CODE >320:C:\Users\mact3\AppData\Local\Temp\se14.
+7FF cinit CODE >321:C:\Users\mact3\AppData\Local\Temp\se14.
+6D4 text2 CODE >21:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6D5 text2 CODE >23:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6D8 text2 CODE >24:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6E1 text2 CODE >25:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6E2 text2 CODE >26:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6E3 text2 CODE >27:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
 71F text1 CODE >29:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
 71F text1 CODE >30:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
 722 text1 CODE >31:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
@@ -175,35 +175,34 @@ $dist/default/production\reloj_4_seg.X.production.o
 7CD text1 CODE >134:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
 7F2 text1 CODE >135:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
 7F5 text1 CODE >136:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6DC maintext CODE >138:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6DC maintext CODE >139:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6DF maintext CODE >140:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6E2 maintext CODE >142:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6E4 maintext CODE >143:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6E6 maintext CODE >144:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6E8 maintext CODE >145:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6EA maintext CODE >148:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6ED maintext CODE >149:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6EE maintext CODE >150:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6EF maintext CODE >151:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6F0 maintext CODE >152:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6F5 maintext CODE >153:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6F8 maintext CODE >154:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6F9 maintext CODE >155:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6FA maintext CODE >156:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-6FB maintext CODE >157:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-700 maintext CODE >158:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-703 maintext CODE >159:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-704 maintext CODE >160:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-705 maintext CODE >161:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-706 maintext CODE >162:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-70B maintext CODE >163:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-70E maintext CODE >164:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-70F maintext CODE >165:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-710 maintext CODE >166:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-711 maintext CODE >167:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-716 maintext CODE >168:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
-71E maintext CODE >169:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6E4 maintext CODE >138:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6E4 maintext CODE >139:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6E7 maintext CODE >140:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6EA maintext CODE >142:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6EC maintext CODE >143:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6EE maintext CODE >144:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6F0 maintext CODE >145:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6F2 maintext CODE >148:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6F5 maintext CODE >149:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6F6 maintext CODE >150:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6F7 maintext CODE >151:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6F8 maintext CODE >152:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+6FD maintext CODE >153:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+700 maintext CODE >154:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+701 maintext CODE >155:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+702 maintext CODE >156:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+703 maintext CODE >157:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+708 maintext CODE >158:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+70B maintext CODE >159:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+70C maintext CODE >160:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+70D maintext CODE >161:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+70E maintext CODE >162:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+713 maintext CODE >163:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+716 maintext CODE >164:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+717 maintext CODE >165:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+718 maintext CODE >166:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+719 maintext CODE >167:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
+71E maintext CODE >168:C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -227,20 +226,20 @@ _h2 74 0 COMMON 1 bssCOMMON dist/default/production\reloj_4_seg.X.production.o
 _m1 72 0 COMMON 1 bssCOMMON dist/default/production\reloj_4_seg.X.production.o
 _m2 70 0 COMMON 1 bssCOMMON dist/default/production\reloj_4_seg.X.production.o
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\mact3\AppData\Local\Temp\sfho.o
-_main DB8 0 CODE 0 maintext dist/default/production\reloj_4_seg.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\mact3\AppData\Local\Temp\se14.o
+_main DC8 0 CODE 0 maintext dist/default/production\reloj_4_seg.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\reloj_4_seg.X.production.o
-start 0 0 CODE 0 init C:\Users\mact3\AppData\Local\Temp\sfho.o
+start 0 0 CODE 0 init C:\Users\mact3\AppData\Local\Temp\se14.o
 __CFG_BOREN$OFF 0 0 ABS 0 - dist/default/production\reloj_4_seg.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\reloj_4_seg.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\sfho.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\sfho.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\sfho.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\sfho.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\sfho.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\sfho.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\se14.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\se14.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\se14.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\se14.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\se14.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\mact3\AppData\Local\Temp\se14.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 __size_of_writeBit 0 0 ABS 0 - dist/default/production\reloj_4_seg.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\reloj_4_seg.X.production.o
@@ -249,13 +248,13 @@ writeBit@_bit 78 0 COMMON 1 cstackCOMMON dist/default/production\reloj_4_seg.X.p
 __Hclrtext 0 0 ABS 0 clrtext -
 __Lmaintext 0 0 ABS 0 maintext -
 _writeNumber E3E 0 CODE 0 text1 dist/default/production\reloj_4_seg.X.production.o
-_writeBit D98 0 CODE 0 text2 dist/default/production\reloj_4_seg.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\mact3\AppData\Local\Temp\sfho.o
-___stacklo 0 0 ABS 0 - C:\Users\mact3\AppData\Local\Temp\sfho.o
-__end_of_writeBit DB8 0 CODE 0 text2 dist/default/production\reloj_4_seg.X.production.o
+_writeBit DA8 0 CODE 0 text2 dist/default/production\reloj_4_seg.X.production.o
+___stackhi 0 0 ABS 0 - C:\Users\mact3\AppData\Local\Temp\se14.o
+___stacklo 0 0 ABS 0 - C:\Users\mact3\AppData\Local\Temp\se14.o
+__end_of_writeBit DC8 0 CODE 0 text2 dist/default/production\reloj_4_seg.X.production.o
 __CFG_MCLRE$OFF 0 0 ABS 0 - dist/default/production\reloj_4_seg.X.production.o
 start_initialization FEC 0 CODE 0 cinit dist/default/production\reloj_4_seg.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\mact3\AppData\Local\Temp\sfho.o
+___int_sp 0 0 STACK 2 stack C:\Users\mact3\AppData\Local\Temp\se14.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -302,8 +301,8 @@ __S1 7B 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 __Lintentry 0 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\mact3\AppData\Local\Temp\sfho.o
-__pmaintext DB8 0 CODE 0 maintext dist/default/production\reloj_4_seg.X.production.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\mact3\AppData\Local\Temp\se14.o
+__pmaintext DC8 0 CODE 0 maintext dist/default/production\reloj_4_seg.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 400E 0 CONFIG 0 config -
 __CFG_CP$OFF 0 0 ABS 0 - dist/default/production\reloj_4_seg.X.production.o
@@ -324,7 +323,7 @@ __Hintentry 0 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 0 0 CODE 0 reset_vec -
 __ptext1 E3E 0 CODE 0 text1 dist/default/production\reloj_4_seg.X.production.o
-__ptext2 D98 0 CODE 0 text2 dist/default/production\reloj_4_seg.X.production.o
+__ptext2 DA8 0 CODE 0 text2 dist/default/production\reloj_4_seg.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
@@ -369,8 +368,8 @@ __initialization FEC 0 CODE 0 cinit dist/default/production\reloj_4_seg.X.produc
 %SEGMENTS
 cinit 0 7F6 FEC A 2
 text1 0 71F E3E D7 2
-text2 0 6CC D98 10 2
-maintext 0 6DC DB8 43 2
+text2 0 6D4 DA8 10 2
+maintext 0 6E4 DC8 3B 2
 reset_vec 0 0 0 1 2
 bssCOMMON 1 70 70 B 1
 config 0 2007 400E 1 2

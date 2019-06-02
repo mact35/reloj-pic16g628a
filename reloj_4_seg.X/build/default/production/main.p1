@@ -619,12 +619,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 167:         writeNumber(m2);
 [e ( _writeNumber (1 _m2 ]
 "168
-[; ;main.c: 168:         m2 = m2 + 1;
-[e = _m2 + _m2 -> 1 `i ]
-"169
-[; ;main.c: 169:         if (1 == 0){
+[; ;main.c: 168:         if (1 == 0){
 [e $ ! == -> 1 `i -> 0 `i 69  ]
 {
+"169
+[; ;main.c: 169:             m2 = m2 + 1;
+[e = _m2 + _m2 -> 1 `i ]
 "170
 [; ;main.c: 170:             if (m2 > 9){
 [e $ ! > _m2 -> 9 `i 70  ]
