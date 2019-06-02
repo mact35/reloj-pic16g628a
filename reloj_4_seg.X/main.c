@@ -16,9 +16,13 @@
 #define _XTAL_FREQ 4000000 // Internal oscillator  
 #include <xc.h>
 
-int h1, h2, m1, m2, cnt;
+unsigned char h1 = 1, h2 = 4, m1 = 2, m2 = 5, blink = 0, ant = 0;
+unsigned short cnt = 0;
 __eeprom unsigned char timer0 = 98;
-
+__eeprom unsigned short tiempo = 1495;
+//TMR0=256-(50ms)(4Mhz)/256-1
+//TMR0 = 256 - (10*4000)/256 -1
+    
 void writeBit(char _bit)
 {
   RB7 = 0; //clockPin PIN 11 SHCP
@@ -31,7 +35,11 @@ void addMinute(){
     if (TMR0 == 255){
         cnt = cnt + 1;
         TMR0 = timer0;
-        if (cnt == 1500){
+        if (ant != (cnt/15)){
+            ant = cnt/15;
+            blink = !blink; 
+        }
+        if (cnt >= tiempo){
             cnt = 0;            
             m2 = m2 + 1;
             if (m2 > 9){
@@ -181,15 +189,6 @@ void main(void) {
     PORTB = 0;
     OPTION_REG = 0b00000111;
     
-    h1 = 1;
-    h2 = 3;
-    m1 = 4;
-    m2 = 9;
-    
-    //TMR0=256-(50ms)(4Mhz)/256-1
-    //TMR0 = 256 - (10*4000)/256 -1
-  
-    cnt = 0;
     TMR0 = timer0;
     
     while(1){
@@ -203,13 +202,13 @@ void main(void) {
         RB2 = 1;
         RB3 = 0;
         RB4 = 0;
-        writeNumber(h2,0);
+        writeNumber(h2,blink);
         writeNumber(10,1);         
         RB1 = 0;
         RB2 = 0;
         RB3 = 1;
         RB4 = 0;
-        writeNumber(m1,0);
+        writeNumber(m1,blink);
         writeNumber(10,1);
         RB1 = 0;
         RB2 = 0;
