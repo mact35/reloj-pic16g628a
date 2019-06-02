@@ -14,11 +14,17 @@
 "21 C:\proyectos\pic\reloj_4_seg\reloj_4_seg.X\main.c
 [v _writeBit writeBit `(v  1 e 1 0 ]
 "29
+[v _addMinute addMinute `(v  1 e 1 0 ]
+"58
 [v _writeNumber writeNumber `(v  1 e 1 0 ]
-"138
+"178
 [v _main main `(v  1 e 1 0 ]
-"228 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f628a.h
+"59 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f628a.h
+[v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+"228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"837
+[v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
 "969
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 "1485
@@ -40,16 +46,17 @@
 [v _h2 h2 `i  1 e 2 0 ]
 [v _m1 m1 `i  1 e 2 0 ]
 [v _m2 m2 `i  1 e 2 0 ]
-"138
+[v _cnt cnt `i  1 e 2 0 ]
+"178
 [v _main main `(v  1 e 1 0 ]
 {
-"188
+"221
 } 0
-"29
+"58
 [v _writeNumber writeNumber `(v  1 e 1 0 ]
 {
 [v writeNumber@num num `i  1 p 2 1 ]
-"136
+"176
 } 0
 "21
 [v _writeBit writeBit `(v  1 e 1 0 ]
@@ -59,4 +66,9 @@
 "23
 [v writeBit@_bit _bit `uc  1 a 1 0 ]
 "27
+} 0
+"29
+[v _addMinute addMinute `(v  1 e 1 0 ]
+{
+"56
 } 0

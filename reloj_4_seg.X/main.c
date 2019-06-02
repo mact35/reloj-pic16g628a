@@ -16,7 +16,7 @@
 #define _XTAL_FREQ 4000000 // Internal oscillator  
 #include <xc.h>
 
-int h1, h2, m1, m2;
+int h1, h2, m1, m2, cnt;
 
 void writeBit(char _bit)
 {
@@ -24,6 +24,35 @@ void writeBit(char _bit)
   RB5 = _bit;  //DATA PIN 14
   RB7 = 1;
   RB7 = 0;
+}
+
+void addMinute(){
+    if (TMR0 == 255){
+        cnt = cnt + 1;
+        TMR0 = 99;
+        if (cnt == 1500){
+            cnt = 0;            
+            m2 = m2 + 1;
+            if (m2 > 9){
+                m2 = 0;
+                m1 = m1 + 1;
+            }
+            if (m1 > 5){
+                m1 = 0;
+                h2 = h2 + 1;
+            }
+            if (h2 > 9){
+                h2 = 0;
+                h1 = h1 + 1;
+            }
+            if (h1 >= 2){
+                if(h2 < 9 && h2 > 3 && h1 == 2){
+                    h2 = 0;
+                    h1 = 0;
+                }
+            }
+        }
+    }
 }
 
 void writeNumber(int num){
@@ -130,59 +159,63 @@ void writeNumber(int num){
             writeBit(0); //B
             writeBit(0); //A
             break;
+        case 10:
+            writeBit(1); //H
+            writeBit(1); //G
+            writeBit(1); //F
+            writeBit(1); //E
+            writeBit(1); //D
+            writeBit(1); //C
+            writeBit(1); //B
+            writeBit(1); //A
+            break;
             
     }
     RB6 = 1; //ST_CP PIN 12
+    addMinute();
 }
 
 void main(void) {
-    TRISB=0b00000000;
+    TRISB = 0b00000000;
     PORTB = 0;
+    OPTION_REG = 0b00000111;
     
     h1 = 0;
-    h2 = 0;
-    m1 = 0;
-    m2 = 0;
-
+    h2 = 2;
+    m1 = 2;
+    m2 = 5;
+    
+    //TMR0=256-(50ms)(4Mhz)/256-1
+    //TMR0 = 256 - (10*4000)/256 -1
+  
+    cnt = 0;
+    TMR0 = 99;
+    
     while(1){
         RB1 = 1;
         RB2 = 0;
         RB3 = 0;
         RB4 = 0;
         writeNumber(h1);
+        writeNumber(10);
         RB1 = 0;
         RB2 = 1;
         RB3 = 0;
         RB4 = 0;
         writeNumber(h2);
+        writeNumber(10);         
         RB1 = 0;
         RB2 = 0;
         RB3 = 1;
         RB4 = 0;
         writeNumber(m1);
+        writeNumber(10);
         RB1 = 0;
         RB2 = 0;
         RB3 = 0;
         RB4 = 1;
-        writeNumber(m2);
-        if (1 == 0){
-            m2 = m2 + 1;
-            if (m2 > 9){
-                m2 = 0;
-                m1 = m1 + 1;
-            }
-            if (m1 > 5){
-                m1 = 0;
-                h1 = h1 + 1;
-            }
-            if (h2 > 9){
-                h2 = 0;
-                h1 = h1 + 1;
-            }
-            if (h1 > 2){
-                h1 = 0;
-            }
-        }
+        writeNumber(m2); 
+        writeNumber(10);     
     }
     return;
 }
