@@ -17,6 +17,7 @@
 #include <xc.h>
 
 int h1, h2, m1, m2, cnt;
+__eeprom unsigned char timer0 = 98;
 
 void writeBit(char _bit)
 {
@@ -29,7 +30,7 @@ void writeBit(char _bit)
 void addMinute(){
     if (TMR0 == 255){
         cnt = cnt + 1;
-        TMR0 = 99;
+        TMR0 = timer0;
         if (cnt == 1500){
             cnt = 0;            
             m2 = m2 + 1;
@@ -55,12 +56,12 @@ void addMinute(){
     }
 }
 
-void writeNumber(int num){
+void writeNumber(unsigned char num, unsigned char point){
     RB6 = 0; //ST_CP PIN 12
     switch (num)
     {
         case 1:
-            writeBit(1); //H
+            writeBit(point); //H
             writeBit(1); //G
             writeBit(1); //F
             writeBit(1); //E
@@ -70,7 +71,7 @@ void writeNumber(int num){
             writeBit(1); //A
             break;
         case 2:
-            writeBit(1); //H
+            writeBit(point); //H
             writeBit(0); //G
             writeBit(1); //F
             writeBit(0); //E
@@ -80,7 +81,7 @@ void writeNumber(int num){
             writeBit(0); //A
             break;
         case 3:
-            writeBit(1); //H
+            writeBit(point); //H
             writeBit(0); //G
             writeBit(1); //F
             writeBit(1); //E
@@ -90,7 +91,7 @@ void writeNumber(int num){
             writeBit(0); //A
             break;
         case 4:
-            writeBit(1); //H
+            writeBit(point); //H
             writeBit(0); //G
             writeBit(0); //F
             writeBit(1); //E
@@ -100,7 +101,7 @@ void writeNumber(int num){
             writeBit(1); //A
             break;
         case 5:
-            writeBit(1); //H
+            writeBit(point); //H
             writeBit(0); //G
             writeBit(0); //F
             writeBit(1); //E
@@ -110,7 +111,7 @@ void writeNumber(int num){
             writeBit(0); //A
             break;
         case 6:
-            writeBit(1); //H
+            writeBit(point); //H
             writeBit(0); //G
             writeBit(0); //F
             writeBit(0); //E
@@ -120,7 +121,7 @@ void writeNumber(int num){
             writeBit(0); //A
             break;
         case 7:
-            writeBit(1); //H
+            writeBit(point); //H
             writeBit(1); //G
             writeBit(1); //F
             writeBit(1); //E
@@ -130,7 +131,7 @@ void writeNumber(int num){
             writeBit(0); //A
             break;
         case 8:
-            writeBit(1); //H
+            writeBit(point); //H
             writeBit(0); //G
             writeBit(0); //F
             writeBit(0); //E
@@ -140,7 +141,7 @@ void writeNumber(int num){
             writeBit(0); //A
             break;
         case 9:
-            writeBit(1); //H
+            writeBit(point); //H
             writeBit(0); //G
             writeBit(0); //F
             writeBit(1); //E
@@ -150,7 +151,7 @@ void writeNumber(int num){
             writeBit(0); //A
             break;
         case 0:
-            writeBit(1); //H
+            writeBit(point); //H
             writeBit(1); //G
             writeBit(0); //F
             writeBit(0); //E
@@ -180,42 +181,42 @@ void main(void) {
     PORTB = 0;
     OPTION_REG = 0b00000111;
     
-    h1 = 0;
-    h2 = 2;
-    m1 = 2;
-    m2 = 5;
+    h1 = 1;
+    h2 = 3;
+    m1 = 4;
+    m2 = 9;
     
     //TMR0=256-(50ms)(4Mhz)/256-1
     //TMR0 = 256 - (10*4000)/256 -1
   
     cnt = 0;
-    TMR0 = 99;
+    TMR0 = timer0;
     
     while(1){
         RB1 = 1;
         RB2 = 0;
         RB3 = 0;
         RB4 = 0;
-        writeNumber(h1);
-        writeNumber(10);
+        writeNumber(h1,1);
+        writeNumber(10,1);
         RB1 = 0;
         RB2 = 1;
         RB3 = 0;
         RB4 = 0;
-        writeNumber(h2);
-        writeNumber(10);         
+        writeNumber(h2,0);
+        writeNumber(10,1);         
         RB1 = 0;
         RB2 = 0;
         RB3 = 1;
         RB4 = 0;
-        writeNumber(m1);
-        writeNumber(10);
+        writeNumber(m1,0);
+        writeNumber(10,1);
         RB1 = 0;
         RB2 = 0;
         RB3 = 0;
         RB4 = 1;
-        writeNumber(m2); 
-        writeNumber(10);     
+        writeNumber(m2,1); 
+        writeNumber(10,1);     
     }
     return;
 }

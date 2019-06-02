@@ -1,1257 +1,1551 @@
 
 
 Microchip MPLAB XC8 Assembler V2.05 build -831301201 
-                                                                                               Sun Jun 02 02:23:32 2019
+                                                                                               Sun Jun 02 13:47:01 2019
 
 Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1 
      1                           	processor	16F628A
      2                           	opt	pw 120
      3                           	opt	flic
-     4                           	psect	nvCOMMON,global,class=COMMON,space=1,delta=1
-     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
-     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
-     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
-     8                           	psect	maintext,global,class=CODE,split=1,delta=2
-     9                           	psect	text1,local,class=CODE,merge=1,delta=2
-    10                           	psect	text2,local,class=CODE,merge=1,delta=2
-    11                           	psect	text3,local,class=CODE,merge=1,delta=2
-    12                           	dabs	1,0x7E,2
-    13  0000                     
-    14                           ; Version 2.05
-    15                           ; Generated 20/12/2018 GMT
-    16                           ; 
-    17                           ; Copyright © 2018, Microchip Technology Inc. and its subsidiaries ("Microchip")
-    18                           ; All rights reserved.
-    19                           ; 
-    20                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
-      +                          ip").
+     4                           	psect	idataEEDATA,global,class=EEDATA,space=3,delta=2
+     5                           	psect	nvCOMMON,global,class=COMMON,space=1,delta=1
+     6                           	psect	nvBANK0,global,class=BANK0,space=1,delta=1
+     7                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     8                           	psect	dataEEDATA,global,class=EEDATA,space=3,delta=2
+     9                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+    10                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    11                           	psect	maintext,global,class=CODE,split=1,delta=2
+    12                           	psect	text1,local,class=CODE,merge=1,delta=2
+    13                           	psect	text2,local,class=CODE,merge=1,delta=2
+    14                           	psect	text3,local,class=CODE,merge=1,delta=2
+    15                           	psect	text4,local,class=CODE,merge=1,delta=2
+    16                           	psect	text5,local,class=CODE,merge=1,delta=2
+    17                           	dabs	1,0x7E,2
+    18  0000                     
+    19                           ; Version 2.05
+    20                           ; Generated 20/12/2018 GMT
     21                           ; 
-    22                           ; Redistribution and use in source and binary forms, with or without modification, are
-    23                           ; permitted provided that the following conditions are met:
+    22                           ; Copyright © 2018, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    23                           ; All rights reserved.
     24                           ; 
-    25                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+    25                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    26                           ; 
+    27                           ; Redistribution and use in source and binary forms, with or without modification, are
+    28                           ; permitted provided that the following conditions are met:
+    29                           ; 
+    30                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
       +                          t of
-    26                           ;        conditions and the following disclaimer.
-    27                           ; 
-    28                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+    31                           ;        conditions and the following disclaimer.
+    32                           ; 
+    33                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
       +                          list
-    29                           ;        of conditions and the following disclaimer in the documentation and/or other
-    30                           ;        materials provided with the distribution.
-    31                           ; 
-    32                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+    34                           ;        of conditions and the following disclaimer in the documentation and/or other
+    35                           ;        materials provided with the distribution.
+    36                           ; 
+    37                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
       +                          is
-    33                           ;        software without specific prior written permission.
-    34                           ; 
-    35                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-    36                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+    38                           ;        software without specific prior written permission.
+    39                           ; 
+    40                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    41                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
       +                          OR
-    37                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+    42                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
       +                          T,
-    38                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
-    39                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
-    40                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+    43                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    44                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    45                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
       +                          RICT
-    41                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+    46                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
       +                          SE OF
-    42                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-    43                           ; 
-    44                           ; 
-    45                           ; Code-generator required, PIC16F628A Definitions
-    46                           ; 
-    47                           ; SFR Addresses
-    48  0000                     	;# 
-    49  0001                     	;# 
-    50  0002                     	;# 
-    51  0003                     	;# 
-    52  0004                     	;# 
-    53  0005                     	;# 
-    54  0006                     	;# 
-    55  000A                     	;# 
-    56  000B                     	;# 
-    57  000C                     	;# 
-    58  000E                     	;# 
-    59  000E                     	;# 
-    60  000F                     	;# 
-    61  0010                     	;# 
-    62  0011                     	;# 
-    63  0012                     	;# 
-    64  0015                     	;# 
-    65  0015                     	;# 
-    66  0016                     	;# 
-    67  0017                     	;# 
-    68  0018                     	;# 
-    69  0019                     	;# 
-    70  001A                     	;# 
-    71  001F                     	;# 
-    72  0081                     	;# 
-    73  0085                     	;# 
-    74  0086                     	;# 
-    75  008C                     	;# 
-    76  008E                     	;# 
-    77  0092                     	;# 
-    78  0098                     	;# 
-    79  0099                     	;# 
-    80  009A                     	;# 
-    81  009B                     	;# 
-    82  009C                     	;# 
-    83  009D                     	;# 
-    84  009F                     	;# 
-    85  0000                     	;# 
-    86  0001                     	;# 
-    87  0002                     	;# 
-    88  0003                     	;# 
-    89  0004                     	;# 
-    90  0005                     	;# 
-    91  0006                     	;# 
-    92  000A                     	;# 
-    93  000B                     	;# 
-    94  000C                     	;# 
-    95  000E                     	;# 
-    96  000E                     	;# 
-    97  000F                     	;# 
-    98  0010                     	;# 
-    99  0011                     	;# 
-   100  0012                     	;# 
-   101  0015                     	;# 
-   102  0015                     	;# 
-   103  0016                     	;# 
-   104  0017                     	;# 
-   105  0018                     	;# 
-   106  0019                     	;# 
-   107  001A                     	;# 
-   108  001F                     	;# 
-   109  0081                     	;# 
-   110  0085                     	;# 
-   111  0086                     	;# 
-   112  008C                     	;# 
-   113  008E                     	;# 
-   114  0092                     	;# 
-   115  0098                     	;# 
-   116  0099                     	;# 
-   117  009A                     	;# 
-   118  009B                     	;# 
-   119  009C                     	;# 
-   120  009D                     	;# 
-   121  009F                     	;# 
-   122                           
-   123                           	psect	nvCOMMON
-   124  0070                     __pnvCOMMON:	
-   125  0070                     _m2:	
-   126  0070                     	ds	2
-   127  0072                     _m1:	
-   128  0072                     	ds	2
-   129  0074                     _h2:	
-   130  0074                     	ds	2
-   131  0006                     _PORTB	set	6
-   132  0001                     _TMR0	set	1
-   133  0034                     _RB4	set	52
-   134  0033                     _RB3	set	51
-   135  0032                     _RB2	set	50
-   136  0031                     _RB1	set	49
-   137  0036                     _RB6	set	54
-   138  0035                     _RB5	set	53
-   139  0037                     _RB7	set	55
-   140  0081                     _OPTION_REG	set	129
-   141  0086                     _TRISB	set	134
-   142                           
-   143                           ; #config settings
-   144  0000                     
-   145                           	psect	cinit
-   146  07FA                     start_initialization:	
-   147  07FA                     __initialization:	
-   148                           
-   149                           ; Clear objects allocated to COMMON
-   150  07FA  01F6               	clrf	__pbssCOMMON& (0+127)
-   151  07FB  01F7               	clrf	(__pbssCOMMON+1)& (0+127)
-   152  07FC  01F8               	clrf	(__pbssCOMMON+2)& (0+127)
-   153  07FD  01F9               	clrf	(__pbssCOMMON+3)& (0+127)
-   154  07FE                     end_of_initialization:	
-   155                           ;End of C runtime variable initialization code
-   156                           
-   157  07FE                     __end_of__initialization:	
-   158  07FE  0183               	clrf	3
-   159  07FF  2E25               	ljmp	_main	;jump to C main() function
-   160                           
-   161                           	psect	bssCOMMON
-   162  0076                     __pbssCOMMON:	
-   163  0076                     _cnt:	
-   164  0076                     	ds	2
-   165  0078                     _h1:	
-   166  0078                     	ds	2
-   167                           
-   168                           	psect	cstackCOMMON
-   169  007A                     __pcstackCOMMON:	
-   170  007A                     ?_writeBit:	
-   171  007A                     ??_writeBit:	
-   172                           ; 1 bytes @ 0x0
-   173                           
-   174  007A                     ?_addMinute:	
-   175                           ; 1 bytes @ 0x0
-   176                           
-   177  007A                     ??_addMinute:	
-   178                           ; 1 bytes @ 0x0
+    47                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    48                           ; 
+    49                           ; 
+    50                           ; Code-generator required, PIC16F628A Definitions
+    51                           ; 
+    52                           ; SFR Addresses
+    53  0000                     	;# 
+    54  0001                     	;# 
+    55  0002                     	;# 
+    56  0003                     	;# 
+    57  0004                     	;# 
+    58  0005                     	;# 
+    59  0006                     	;# 
+    60  000A                     	;# 
+    61  000B                     	;# 
+    62  000C                     	;# 
+    63  000E                     	;# 
+    64  000E                     	;# 
+    65  000F                     	;# 
+    66  0010                     	;# 
+    67  0011                     	;# 
+    68  0012                     	;# 
+    69  0015                     	;# 
+    70  0015                     	;# 
+    71  0016                     	;# 
+    72  0017                     	;# 
+    73  0018                     	;# 
+    74  0019                     	;# 
+    75  001A                     	;# 
+    76  001F                     	;# 
+    77  0081                     	;# 
+    78  0085                     	;# 
+    79  0086                     	;# 
+    80  008C                     	;# 
+    81  008E                     	;# 
+    82  0092                     	;# 
+    83  0098                     	;# 
+    84  0099                     	;# 
+    85  009A                     	;# 
+    86  009B                     	;# 
+    87  009C                     	;# 
+    88  009D                     	;# 
+    89  009F                     	;# 
+    90  0000                     	;# 
+    91  0001                     	;# 
+    92  0002                     	;# 
+    93  0003                     	;# 
+    94  0004                     	;# 
+    95  0005                     	;# 
+    96  0006                     	;# 
+    97  000A                     	;# 
+    98  000B                     	;# 
+    99  000C                     	;# 
+   100  000E                     	;# 
+   101  000E                     	;# 
+   102  000F                     	;# 
+   103  0010                     	;# 
+   104  0011                     	;# 
+   105  0012                     	;# 
+   106  0015                     	;# 
+   107  0015                     	;# 
+   108  0016                     	;# 
+   109  0017                     	;# 
+   110  0018                     	;# 
+   111  0019                     	;# 
+   112  001A                     	;# 
+   113  001F                     	;# 
+   114  0081                     	;# 
+   115  0085                     	;# 
+   116  0086                     	;# 
+   117  008C                     	;# 
+   118  008E                     	;# 
+   119  0092                     	;# 
+   120  0098                     	;# 
+   121  0099                     	;# 
+   122  009A                     	;# 
+   123  009B                     	;# 
+   124  009C                     	;# 
+   125  009D                     	;# 
+   126  009F                     	;# 
+   127                           
+   128                           	psect	idataEEDATA
+   129  0000                     __pidataEEDATA:	
+   130  0000                     _timer0:	
+   131                           ;initializer for _timer0
+   132                           
+   133  0000  0062               	db	98
+   134                           
+   135                           	psect	nvCOMMON
+   136  007C                     __pnvCOMMON:	
+   137  007C                     _h2:	
+   138  007C                     	ds	2
+   139                           
+   140                           	psect	nvBANK0
+   141  0020                     __pnvBANK0:	
+   142  0020                     _m2:	
+   143  0020                     	ds	2
+   144  0022                     _m1:	
+   145  0022                     	ds	2
+   146  0024                     _h1:	
+   147  0024                     	ds	2
+   148  0006                     _PORTB	set	6
+   149  0001                     _TMR0	set	1
+   150  0034                     _RB4	set	52
+   151  0033                     _RB3	set	51
+   152  0032                     _RB2	set	50
+   153  0031                     _RB1	set	49
+   154  0036                     _RB6	set	54
+   155  0035                     _RB5	set	53
+   156  0037                     _RB7	set	55
+   157  009A                     _EEDATA	set	154
+   158  009C                     _EECON1	set	156
+   159  009B                     _EEADR	set	155
+   160  009C                     _EECON1bits	set	156
+   161  0081                     _OPTION_REG	set	129
+   162  0086                     _TRISB	set	134
+   163                           
+   164                           ; #config settings
+   165  0000                     
+   166                           	psect	cinit
+   167  07FC                     start_initialization:	
+   168  07FC                     __initialization:	
+   169                           
+   170                           ; Clear objects allocated to BANK0
+   171  07FC  01A6               	clrf	__pbssBANK0& (0+127)
+   172  07FD  01A7               	clrf	(__pbssBANK0+1)& (0+127)
+   173  07FE                     end_of_initialization:	
+   174                           ;End of C runtime variable initialization code
+   175                           
+   176  07FE                     __end_of__initialization:	
+   177  07FE  0183               	clrf	3
+   178  07FF  2E19               	ljmp	_main	;jump to C main() function
    179                           
-   180  007A                     ?_main:	
-   181                           ; 1 bytes @ 0x0
+   180                           	psect	dataEEDATA
+   181  0000                     __pdataEEDATA:	
    182                           
-   183  007A                     writeBit@_bit:	
-   184                           ; 1 bytes @ 0x0
-   185                           
-   186                           
-   187                           ; 1 bytes @ 0x0
-   188  007A                     	ds	1
-   189  007B                     ?_writeNumber:	
-   190  007B                     writeNumber@num:	
-   191                           ; 1 bytes @ 0x1
-   192                           
+   183                           	psect	bssBANK0
+   184  0026                     __pbssBANK0:	
+   185  0026                     _cnt:	
+   186  0026                     	ds	2
+   187                           
+   188                           	psect	cstackCOMMON
+   189  0070                     __pcstackCOMMON:	
+   190  0070                     ?_writeBit:	
+   191  0070                     ??_writeBit:	
+   192                           ; 1 bytes @ 0x0
    193                           
-   194                           ; 2 bytes @ 0x1
-   195  007B                     	ds	2
-   196  007D                     ??_writeNumber:	
-   197  007D                     ??_main:	
-   198                           ; 1 bytes @ 0x3
+   194  0070                     ?_addMinute:	
+   195                           ; 1 bytes @ 0x0
+   196                           
+   197  0070                     ?_main:	
+   198                           ; 1 bytes @ 0x0
    199                           
-   200                           
-   201                           	psect	maintext
-   202  0625                     __pmaintext:	
-   203                           ; 1 bytes @ 0x3
-   204 ;;
-   205 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-   206 ;;
-   207 ;; *************** function _main *****************
-   208 ;; Defined at:
-   209 ;;		line 178 in file "main.c"
-   210 ;; Parameters:    Size  Location     Type
-   211 ;;		None
-   212 ;; Auto vars:     Size  Location     Type
-   213 ;;		None
-   214 ;; Return value:  Size  Location     Type
-   215 ;;                  1    wreg      void 
-   216 ;; Registers used:
-   217 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
-   218 ;; Tracked objects:
-   219 ;;		On entry : B00/0
-   220 ;;		On exit  : 0/0
-   221 ;;		Unchanged: 0/0
-   222 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
-   223 ;;      Params:         0       0       0       0
-   224 ;;      Locals:         0       0       0       0
-   225 ;;      Temps:          0       0       0       0
-   226 ;;      Totals:         0       0       0       0
-   227 ;;Total ram usage:        0 bytes
-   228 ;; Hardware stack levels required when called:    2
-   229 ;; This function calls:
-   230 ;;		_writeNumber
-   231 ;; This function is called by:
-   232 ;;		Startup code after reset
-   233 ;; This function uses a non-reentrant model
-   234 ;;
-   235                           
+   200  0070                     ?___eecpymem:	
+   201                           ; 1 bytes @ 0x0
+   202                           
+   203  0070                     ?___eetoc:	
+   204                           ; 1 bytes @ 0x0
+   205                           
+   206  0070                     writeBit@_bit:	
+   207                           ; 1 bytes @ 0x0
+   208                           
+   209  0070                     ___eecpymem@from:	
+   210                           ; 1 bytes @ 0x0
+   211                           
+   212                           
+   213                           ; 1 bytes @ 0x0
+   214  0070                     	ds	1
+   215  0071                     ___eecpymem@size:	
+   216                           
+   217                           ; 1 bytes @ 0x1
+   218  0071                     	ds	1
+   219  0072                     ??___eecpymem:	
+   220                           
+   221                           ; 1 bytes @ 0x2
+   222  0072                     	ds	1
+   223  0073                     ___eecpymem@cp:	
+   224                           
+   225                           ; 1 bytes @ 0x3
+   226  0073                     	ds	1
+   227  0074                     ___eecpymem@to:	
+   228                           
+   229                           ; 1 bytes @ 0x4
+   230  0074                     	ds	1
+   231  0075                     ??___eetoc:	
+   232                           
+   233                           ; 1 bytes @ 0x5
+   234  0075                     	ds	1
+   235  0076                     ___eetoc@addr:	
    236                           
-   237                           ;psect for function _main
-   238  0625                     _main:	
-   239                           
-   240                           ;main.c: 179:     TRISB = 0b00000000;
-   241                           
-   242                           ;incstack = 0
-   243                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
-   244  0625  1683               	bsf	3,5	;RP0=1, select bank1
-   245  0626  1303               	bcf	3,6	;RP1=0, select bank1
-   246  0627  0186               	clrf	6	;volatile
-   247                           
-   248                           ;main.c: 180:     PORTB = 0;
-   249  0628  1283               	bcf	3,5	;RP0=0, select bank0
-   250  0629  1303               	bcf	3,6	;RP1=0, select bank0
-   251  062A  0186               	clrf	6	;volatile
-   252                           
-   253                           ;main.c: 181:     OPTION_REG = 0b00000111;
-   254  062B  3007               	movlw	7
-   255  062C  1683               	bsf	3,5	;RP0=1, select bank1
-   256  062D  1303               	bcf	3,6	;RP1=0, select bank1
-   257  062E  0081               	movwf	1	;volatile
+   237                           ; 1 bytes @ 0x6
+   238  0076                     	ds	1
+   239  0077                     ___eetoc@data:	
+   240                           
+   241                           ; 1 bytes @ 0x7
+   242  0077                     	ds	1
+   243  0078                     ??_addMinute:	
+   244  0078                     ?_writeNumber:	
+   245                           ; 1 bytes @ 0x8
+   246                           
+   247  0078                     writeNumber@point:	
+   248                           ; 1 bytes @ 0x8
+   249                           
+   250                           
+   251                           ; 1 bytes @ 0x8
+   252  0078                     	ds	1
+   253  0079                     ??_writeNumber:	
+   254                           
+   255                           ; 1 bytes @ 0x9
+   256  0079                     	ds	2
+   257  007B                     writeNumber@num:	
    258                           
-   259                           ;main.c: 183:     h1 = 0;
-   260  062F  01F8               	clrf	_h1
-   261  0630  01F9               	clrf	_h1+1
+   259                           ; 1 bytes @ 0xB
+   260  007B                     	ds	1
+   261  007C                     ??_main:	
    262                           
-   263                           ;main.c: 184:     h2 = 2;
-   264  0631  3002               	movlw	2
-   265  0632  00F4               	movwf	_h2
-   266  0633  3000               	movlw	0
-   267  0634  00F5               	movwf	_h2+1
-   268                           
-   269                           ;main.c: 185:     m1 = 2;
-   270  0635  3002               	movlw	2
-   271  0636  00F2               	movwf	_m1
-   272  0637  3000               	movlw	0
-   273  0638  00F3               	movwf	_m1+1
-   274                           
-   275                           ;main.c: 186:     m2 = 5;
-   276  0639  3005               	movlw	5
-   277  063A  00F0               	movwf	_m2
-   278  063B  3000               	movlw	0
-   279  063C  00F1               	movwf	_m2+1
-   280                           
-   281                           ;main.c: 191:     cnt = 0;
-   282  063D  01F6               	clrf	_cnt
-   283  063E  01F7               	clrf	_cnt+1
-   284                           
-   285                           ;main.c: 192:     TMR0 = 99;
-   286  063F  3063               	movlw	99
-   287  0640  1283               	bcf	3,5	;RP0=0, select bank0
-   288  0641  1303               	bcf	3,6	;RP1=0, select bank0
-   289  0642  0081               	movwf	1	;volatile
-   290  0643                     l859:	
-   291                           
-   292                           ;main.c: 195:         RB1 = 1;
-   293  0643  1283               	bcf	3,5	;RP0=0, select bank0
-   294  0644  1303               	bcf	3,6	;RP1=0, select bank0
-   295  0645  1486               	bsf	6,1	;volatile
-   296                           
-   297                           ;main.c: 196:         RB2 = 0;
-   298  0646  1106               	bcf	6,2	;volatile
+   263                           	psect	maintext
+   264  0619                     __pmaintext:	
+   265                           ; 1 bytes @ 0xC
+   266 ;;
+   267 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   268 ;;
+   269 ;; *************** function _main *****************
+   270 ;; Defined at:
+   271 ;;		line 179 in file "main.c"
+   272 ;; Parameters:    Size  Location     Type
+   273 ;;		None
+   274 ;; Auto vars:     Size  Location     Type
+   275 ;;		None
+   276 ;; Return value:  Size  Location     Type
+   277 ;;                  1    wreg      void 
+   278 ;; Registers used:
+   279 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   280 ;; Tracked objects:
+   281 ;;		On entry : B00/0
+   282 ;;		On exit  : 0/0
+   283 ;;		Unchanged: 0/0
+   284 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   285 ;;      Params:         0       0       0       0
+   286 ;;      Locals:         0       0       0       0
+   287 ;;      Temps:          0       0       0       0
+   288 ;;      Totals:         0       0       0       0
+   289 ;;Total ram usage:        0 bytes
+   290 ;; Hardware stack levels required when called:    4
+   291 ;; This function calls:
+   292 ;;		___eetoc
+   293 ;;		_writeNumber
+   294 ;; This function is called by:
+   295 ;;		Startup code after reset
+   296 ;; This function uses a non-reentrant model
+   297 ;;
+   298                           
    299                           
-   300                           ;main.c: 197:         RB3 = 0;
-   301  0647  1186               	bcf	6,3	;volatile
+   300                           ;psect for function _main
+   301  0619                     _main:	
    302                           
-   303                           ;main.c: 198:         RB4 = 0;
-   304  0648  1206               	bcf	6,4	;volatile
-   305                           
-   306                           ;main.c: 199:         writeNumber(h1);
-   307  0649  0879               	movf	_h1+1,w
-   308  064A  00FC               	movwf	writeNumber@num+1
-   309  064B  0878               	movf	_h1,w
-   310  064C  00FB               	movwf	writeNumber@num
-   311  064D  270E               	fcall	_writeNumber
-   312                           
-   313                           ;main.c: 200:         writeNumber(10);
-   314  064E  300A               	movlw	10
-   315  064F  00FB               	movwf	writeNumber@num
-   316  0650  3000               	movlw	0
-   317  0651  00FC               	movwf	writeNumber@num+1
-   318  0652  270E               	fcall	_writeNumber
-   319                           
-   320                           ;main.c: 201:         RB1 = 0;
-   321  0653  1283               	bcf	3,5	;RP0=0, select bank0
-   322  0654  1303               	bcf	3,6	;RP1=0, select bank0
-   323  0655  1086               	bcf	6,1	;volatile
-   324                           
-   325                           ;main.c: 202:         RB2 = 1;
-   326  0656  1506               	bsf	6,2	;volatile
-   327                           
-   328                           ;main.c: 203:         RB3 = 0;
-   329  0657  1186               	bcf	6,3	;volatile
-   330                           
-   331                           ;main.c: 204:         RB4 = 0;
-   332  0658  1206               	bcf	6,4	;volatile
-   333                           
-   334                           ;main.c: 205:         writeNumber(h2);
-   335  0659  0875               	movf	_h2+1,w
-   336  065A  00FC               	movwf	writeNumber@num+1
-   337  065B  0874               	movf	_h2,w
-   338  065C  00FB               	movwf	writeNumber@num
-   339  065D  270E               	fcall	_writeNumber
-   340                           
-   341                           ;main.c: 206:         writeNumber(10);
-   342  065E  300A               	movlw	10
-   343  065F  00FB               	movwf	writeNumber@num
-   344  0660  3000               	movlw	0
-   345  0661  00FC               	movwf	writeNumber@num+1
-   346  0662  270E               	fcall	_writeNumber
+   303                           ;main.c: 180:     TRISB = 0b00000000;
+   304                           
+   305                           ;incstack = 0
+   306                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   307  0619  1683               	bsf	3,5	;RP0=1, select bank1
+   308  061A  1303               	bcf	3,6	;RP1=0, select bank1
+   309  061B  0186               	clrf	6	;volatile
+   310                           
+   311                           ;main.c: 181:     PORTB = 0;
+   312  061C  1283               	bcf	3,5	;RP0=0, select bank0
+   313  061D  1303               	bcf	3,6	;RP1=0, select bank0
+   314  061E  0186               	clrf	6	;volatile
+   315                           
+   316                           ;main.c: 182:     OPTION_REG = 0b00000111;
+   317  061F  3007               	movlw	7
+   318  0620  1683               	bsf	3,5	;RP0=1, select bank1
+   319  0621  1303               	bcf	3,6	;RP1=0, select bank1
+   320  0622  0081               	movwf	1	;volatile
+   321                           
+   322                           ;main.c: 184:     h1 = 1;
+   323  0623  3001               	movlw	1
+   324  0624  1283               	bcf	3,5	;RP0=0, select bank0
+   325  0625  1303               	bcf	3,6	;RP1=0, select bank0
+   326  0626  00A4               	movwf	_h1
+   327  0627  3000               	movlw	0
+   328  0628  00A5               	movwf	_h1+1
+   329                           
+   330                           ;main.c: 185:     h2 = 3;
+   331  0629  3003               	movlw	3
+   332  062A  00FC               	movwf	_h2
+   333  062B  3000               	movlw	0
+   334  062C  00FD               	movwf	_h2+1
+   335                           
+   336                           ;main.c: 186:     m1 = 4;
+   337  062D  3004               	movlw	4
+   338  062E  00A2               	movwf	_m1
+   339  062F  3000               	movlw	0
+   340  0630  00A3               	movwf	_m1+1
+   341                           
+   342                           ;main.c: 187:     m2 = 9;
+   343  0631  3009               	movlw	9
+   344  0632  00A0               	movwf	_m2
+   345  0633  3000               	movlw	0
+   346  0634  00A1               	movwf	_m2+1
    347                           
-   348                           ;main.c: 207:         RB1 = 0;
-   349  0663  1283               	bcf	3,5	;RP0=0, select bank0
-   350  0664  1303               	bcf	3,6	;RP1=0, select bank0
-   351  0665  1086               	bcf	6,1	;volatile
-   352                           
-   353                           ;main.c: 208:         RB2 = 0;
-   354  0666  1106               	bcf	6,2	;volatile
-   355                           
-   356                           ;main.c: 209:         RB3 = 1;
-   357  0667  1586               	bsf	6,3	;volatile
-   358                           
-   359                           ;main.c: 210:         RB4 = 0;
-   360  0668  1206               	bcf	6,4	;volatile
-   361                           
-   362                           ;main.c: 211:         writeNumber(m1);
-   363  0669  0873               	movf	_m1+1,w
-   364  066A  00FC               	movwf	writeNumber@num+1
-   365  066B  0872               	movf	_m1,w
-   366  066C  00FB               	movwf	writeNumber@num
-   367  066D  270E               	fcall	_writeNumber
-   368                           
-   369                           ;main.c: 212:         writeNumber(10);
-   370  066E  300A               	movlw	10
-   371  066F  00FB               	movwf	writeNumber@num
-   372  0670  3000               	movlw	0
-   373  0671  00FC               	movwf	writeNumber@num+1
-   374  0672  270E               	fcall	_writeNumber
-   375                           
-   376                           ;main.c: 213:         RB1 = 0;
-   377  0673  1283               	bcf	3,5	;RP0=0, select bank0
-   378  0674  1303               	bcf	3,6	;RP1=0, select bank0
-   379  0675  1086               	bcf	6,1	;volatile
-   380                           
-   381                           ;main.c: 214:         RB2 = 0;
-   382  0676  1106               	bcf	6,2	;volatile
-   383                           
-   384                           ;main.c: 215:         RB3 = 0;
-   385  0677  1186               	bcf	6,3	;volatile
-   386                           
-   387                           ;main.c: 216:         RB4 = 1;
-   388  0678  1606               	bsf	6,4	;volatile
-   389                           
-   390                           ;main.c: 217:         writeNumber(m2);
-   391  0679  0871               	movf	_m2+1,w
-   392  067A  00FC               	movwf	writeNumber@num+1
-   393  067B  0870               	movf	_m2,w
-   394  067C  00FB               	movwf	writeNumber@num
-   395  067D  270E               	fcall	_writeNumber
+   348                           ;main.c: 192:     cnt = 0;
+   349  0635  01A6               	clrf	_cnt
+   350  0636  01A7               	clrf	_cnt+1
+   351                           
+   352                           ;main.c: 193:     TMR0 = timer0;
+   353  0637  3000               	movlw	(low _timer0)& (0+255)
+   354  0638  25D8               	fcall	___eetoc
+   355  0639  1283               	bcf	3,5	;RP0=0, select bank0
+   356  063A  1303               	bcf	3,6	;RP1=0, select bank0
+   357  063B  0081               	movwf	1	;volatile
+   358  063C                     l959:	
+   359                           
+   360                           ;main.c: 196:         RB1 = 1;
+   361  063C  1283               	bcf	3,5	;RP0=0, select bank0
+   362  063D  1303               	bcf	3,6	;RP1=0, select bank0
+   363  063E  1486               	bsf	6,1	;volatile
+   364                           
+   365                           ;main.c: 197:         RB2 = 0;
+   366  063F  1106               	bcf	6,2	;volatile
+   367                           
+   368                           ;main.c: 198:         RB3 = 0;
+   369  0640  1186               	bcf	6,3	;volatile
+   370                           
+   371                           ;main.c: 199:         RB4 = 0;
+   372  0641  1206               	bcf	6,4	;volatile
+   373                           
+   374                           ;main.c: 200:         writeNumber(h1,1);
+   375  0642  01F8               	clrf	writeNumber@point
+   376  0643  0AF8               	incf	writeNumber@point,f
+   377  0644  0824               	movf	_h1,w
+   378  0645  270C               	fcall	_writeNumber
+   379                           
+   380                           ;main.c: 201:         writeNumber(10,1);
+   381  0646  01F8               	clrf	writeNumber@point
+   382  0647  0AF8               	incf	writeNumber@point,f
+   383  0648  300A               	movlw	10
+   384  0649  270C               	fcall	_writeNumber
+   385                           
+   386                           ;main.c: 202:         RB1 = 0;
+   387  064A  1283               	bcf	3,5	;RP0=0, select bank0
+   388  064B  1303               	bcf	3,6	;RP1=0, select bank0
+   389  064C  1086               	bcf	6,1	;volatile
+   390                           
+   391                           ;main.c: 203:         RB2 = 1;
+   392  064D  1506               	bsf	6,2	;volatile
+   393                           
+   394                           ;main.c: 204:         RB3 = 0;
+   395  064E  1186               	bcf	6,3	;volatile
    396                           
-   397                           ;main.c: 218:         writeNumber(10);
-   398  067E  300A               	movlw	10
-   399  067F  00FB               	movwf	writeNumber@num
-   400  0680  3000               	movlw	0
-   401  0681  00FC               	movwf	writeNumber@num+1
-   402  0682  270E               	fcall	_writeNumber
-   403  0683  2E43               	goto	l859
-   404  0684                     __end_of_main:	
-   405                           
-   406                           	psect	text1
-   407  070E                     __ptext1:	
-   408 ;; *************** function _writeNumber *****************
-   409 ;; Defined at:
-   410 ;;		line 58 in file "main.c"
-   411 ;; Parameters:    Size  Location     Type
-   412 ;;  num             2    1[COMMON] int 
-   413 ;; Auto vars:     Size  Location     Type
-   414 ;;		None
-   415 ;; Return value:  Size  Location     Type
-   416 ;;                  1    wreg      void 
-   417 ;; Registers used:
-   418 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
-   419 ;; Tracked objects:
-   420 ;;		On entry : 0/0
-   421 ;;		On exit  : 0/0
-   422 ;;		Unchanged: 0/0
-   423 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
-   424 ;;      Params:         2       0       0       0
-   425 ;;      Locals:         0       0       0       0
-   426 ;;      Temps:          0       0       0       0
-   427 ;;      Totals:         2       0       0       0
-   428 ;;Total ram usage:        2 bytes
-   429 ;; Hardware stack levels used:    1
-   430 ;; Hardware stack levels required when called:    1
-   431 ;; This function calls:
-   432 ;;		_addMinute
-   433 ;;		_writeBit
-   434 ;; This function is called by:
-   435 ;;		_main
-   436 ;; This function uses a non-reentrant model
-   437 ;;
-   438                           
-   439                           
-   440                           ;psect for function _writeNumber
-   441  070E                     _writeNumber:	
-   442                           
-   443                           ;main.c: 59:     RB6 = 0;
-   444                           
-   445                           ;incstack = 0
-   446                           ; Regs used in _writeNumber: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
-   447  070E  1283               	bcf	3,5	;RP0=0, select bank0
-   448  070F  1303               	bcf	3,6	;RP1=0, select bank0
-   449  0710  1306               	bcf	6,6	;volatile
-   450                           
-   451                           ;main.c: 60:     switch (num)
-   452  0711  2FCD               	goto	l841
-   453  0712                     l817:	
-   454                           
-   455                           ;main.c: 63:             writeBit(1);
-   456  0712  3001               	movlw	1
-   457  0713  2615               	fcall	_writeBit
-   458                           
-   459                           ;main.c: 64:             writeBit(1);
-   460  0714  3001               	movlw	1
-   461  0715  2615               	fcall	_writeBit
-   462                           
-   463                           ;main.c: 65:             writeBit(1);
-   464  0716  3001               	movlw	1
-   465  0717  2615               	fcall	_writeBit
-   466                           
-   467                           ;main.c: 66:             writeBit(1);
-   468  0718  3001               	movlw	1
-   469  0719  2615               	fcall	_writeBit
-   470                           
-   471                           ;main.c: 67:             writeBit(1);
-   472  071A  3001               	movlw	1
-   473  071B  2615               	fcall	_writeBit
-   474                           
-   475                           ;main.c: 68:             writeBit(0);
-   476  071C  3000               	movlw	0
-   477  071D  2615               	fcall	_writeBit
-   478                           
-   479                           ;main.c: 69:             writeBit(0);
-   480  071E  3000               	movlw	0
-   481  071F  2615               	fcall	_writeBit
-   482                           
-   483                           ;main.c: 70:             writeBit(1);
-   484  0720  3001               	movlw	1
-   485  0721  2615               	fcall	_writeBit
-   486                           
-   487                           ;main.c: 71:             break;
-   488  0722  2FF5               	goto	l50
-   489  0723                     l819:	
-   490                           
-   491                           ;main.c: 73:             writeBit(1);
-   492  0723  3001               	movlw	1
-   493  0724  2615               	fcall	_writeBit
-   494                           
-   495                           ;main.c: 74:             writeBit(0);
-   496  0725  3000               	movlw	0
-   497  0726  2615               	fcall	_writeBit
+   397                           ;main.c: 205:         RB4 = 0;
+   398  064F  1206               	bcf	6,4	;volatile
+   399                           
+   400                           ;main.c: 206:         writeNumber(h2,0);
+   401  0650  01F8               	clrf	writeNumber@point
+   402  0651  087C               	movf	_h2,w
+   403  0652  270C               	fcall	_writeNumber
+   404                           
+   405                           ;main.c: 207:         writeNumber(10,1);
+   406  0653  01F8               	clrf	writeNumber@point
+   407  0654  0AF8               	incf	writeNumber@point,f
+   408  0655  300A               	movlw	10
+   409  0656  270C               	fcall	_writeNumber
+   410                           
+   411                           ;main.c: 208:         RB1 = 0;
+   412  0657  1283               	bcf	3,5	;RP0=0, select bank0
+   413  0658  1303               	bcf	3,6	;RP1=0, select bank0
+   414  0659  1086               	bcf	6,1	;volatile
+   415                           
+   416                           ;main.c: 209:         RB2 = 0;
+   417  065A  1106               	bcf	6,2	;volatile
+   418                           
+   419                           ;main.c: 210:         RB3 = 1;
+   420  065B  1586               	bsf	6,3	;volatile
+   421                           
+   422                           ;main.c: 211:         RB4 = 0;
+   423  065C  1206               	bcf	6,4	;volatile
+   424                           
+   425                           ;main.c: 212:         writeNumber(m1,0);
+   426  065D  01F8               	clrf	writeNumber@point
+   427  065E  0822               	movf	_m1,w
+   428  065F  270C               	fcall	_writeNumber
+   429                           
+   430                           ;main.c: 213:         writeNumber(10,1);
+   431  0660  01F8               	clrf	writeNumber@point
+   432  0661  0AF8               	incf	writeNumber@point,f
+   433  0662  300A               	movlw	10
+   434  0663  270C               	fcall	_writeNumber
+   435                           
+   436                           ;main.c: 214:         RB1 = 0;
+   437  0664  1283               	bcf	3,5	;RP0=0, select bank0
+   438  0665  1303               	bcf	3,6	;RP1=0, select bank0
+   439  0666  1086               	bcf	6,1	;volatile
+   440                           
+   441                           ;main.c: 215:         RB2 = 0;
+   442  0667  1106               	bcf	6,2	;volatile
+   443                           
+   444                           ;main.c: 216:         RB3 = 0;
+   445  0668  1186               	bcf	6,3	;volatile
+   446                           
+   447                           ;main.c: 217:         RB4 = 1;
+   448  0669  1606               	bsf	6,4	;volatile
+   449                           
+   450                           ;main.c: 218:         writeNumber(m2,1);
+   451  066A  01F8               	clrf	writeNumber@point
+   452  066B  0AF8               	incf	writeNumber@point,f
+   453  066C  0820               	movf	_m2,w
+   454  066D  270C               	fcall	_writeNumber
+   455                           
+   456                           ;main.c: 219:         writeNumber(10,1);
+   457  066E  01F8               	clrf	writeNumber@point
+   458  066F  0AF8               	incf	writeNumber@point,f
+   459  0670  300A               	movlw	10
+   460  0671  270C               	fcall	_writeNumber
+   461  0672  2E3C               	goto	l959
+   462  0673                     __end_of_main:	
+   463                           
+   464                           	psect	text1
+   465  070C                     __ptext1:	
+   466 ;; *************** function _writeNumber *****************
+   467 ;; Defined at:
+   468 ;;		line 59 in file "main.c"
+   469 ;; Parameters:    Size  Location     Type
+   470 ;;  num             1    wreg     unsigned char 
+   471 ;;  point           1    8[COMMON] unsigned char 
+   472 ;; Auto vars:     Size  Location     Type
+   473 ;;  num             1   11[COMMON] unsigned char 
+   474 ;; Return value:  Size  Location     Type
+   475 ;;                  1    wreg      void 
+   476 ;; Registers used:
+   477 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   478 ;; Tracked objects:
+   479 ;;		On entry : 0/0
+   480 ;;		On exit  : 0/0
+   481 ;;		Unchanged: 0/0
+   482 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   483 ;;      Params:         1       0       0       0
+   484 ;;      Locals:         1       0       0       0
+   485 ;;      Temps:          2       0       0       0
+   486 ;;      Totals:         4       0       0       0
+   487 ;;Total ram usage:        4 bytes
+   488 ;; Hardware stack levels used:    1
+   489 ;; Hardware stack levels required when called:    3
+   490 ;; This function calls:
+   491 ;;		_addMinute
+   492 ;;		_writeBit
+   493 ;; This function is called by:
+   494 ;;		_main
+   495 ;; This function uses a non-reentrant model
+   496 ;;
+   497                           
    498                           
-   499                           ;main.c: 75:             writeBit(1);
-   500  0727  3001               	movlw	1
-   501  0728  2615               	fcall	_writeBit
-   502                           
-   503                           ;main.c: 76:             writeBit(0);
-   504  0729  3000               	movlw	0
-   505  072A  2615               	fcall	_writeBit
+   499                           ;psect for function _writeNumber
+   500  070C                     _writeNumber:	
+   501                           
+   502                           ;incstack = 0
+   503                           ; Regs used in _writeNumber: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   504                           ;writeNumber@num stored from wreg
+   505  070C  00FB               	movwf	writeNumber@num
    506                           
-   507                           ;main.c: 77:             writeBit(0);
-   508  072B  3000               	movlw	0
-   509  072C  2615               	fcall	_writeBit
-   510                           
-   511                           ;main.c: 78:             writeBit(1);
-   512  072D  3001               	movlw	1
-   513  072E  2615               	fcall	_writeBit
-   514                           
-   515                           ;main.c: 79:             writeBit(0);
-   516  072F  3000               	movlw	0
-   517  0730  2615               	fcall	_writeBit
-   518                           
-   519                           ;main.c: 80:             writeBit(0);
-   520  0731  3000               	movlw	0
-   521  0732  2615               	fcall	_writeBit
-   522                           
-   523                           ;main.c: 81:             break;
-   524  0733  2FF5               	goto	l50
-   525  0734                     l821:	
-   526                           
-   527                           ;main.c: 83:             writeBit(1);
-   528  0734  3001               	movlw	1
-   529  0735  2615               	fcall	_writeBit
-   530                           
-   531                           ;main.c: 84:             writeBit(0);
-   532  0736  3000               	movlw	0
-   533  0737  2615               	fcall	_writeBit
-   534                           
-   535                           ;main.c: 85:             writeBit(1);
-   536  0738  3001               	movlw	1
-   537  0739  2615               	fcall	_writeBit
-   538                           
-   539                           ;main.c: 86:             writeBit(1);
-   540  073A  3001               	movlw	1
-   541  073B  2615               	fcall	_writeBit
-   542                           
-   543                           ;main.c: 87:             writeBit(0);
-   544  073C  3000               	movlw	0
-   545  073D  2615               	fcall	_writeBit
-   546                           
-   547                           ;main.c: 88:             writeBit(0);
-   548  073E  3000               	movlw	0
-   549  073F  2615               	fcall	_writeBit
-   550                           
-   551                           ;main.c: 89:             writeBit(0);
-   552  0740  3000               	movlw	0
-   553  0741  2615               	fcall	_writeBit
-   554                           
-   555                           ;main.c: 90:             writeBit(0);
-   556  0742  3000               	movlw	0
-   557  0743  2615               	fcall	_writeBit
-   558                           
-   559                           ;main.c: 91:             break;
-   560  0744  2FF5               	goto	l50
-   561  0745                     l823:	
-   562                           
-   563                           ;main.c: 93:             writeBit(1);
-   564  0745  3001               	movlw	1
-   565  0746  2615               	fcall	_writeBit
-   566                           
-   567                           ;main.c: 94:             writeBit(0);
-   568  0747  3000               	movlw	0
-   569  0748  2615               	fcall	_writeBit
-   570                           
-   571                           ;main.c: 95:             writeBit(0);
-   572  0749  3000               	movlw	0
-   573  074A  2615               	fcall	_writeBit
-   574                           
-   575                           ;main.c: 96:             writeBit(1);
-   576  074B  3001               	movlw	1
-   577  074C  2615               	fcall	_writeBit
-   578                           
-   579                           ;main.c: 97:             writeBit(1);
-   580  074D  3001               	movlw	1
-   581  074E  2615               	fcall	_writeBit
-   582                           
-   583                           ;main.c: 98:             writeBit(0);
-   584  074F  3000               	movlw	0
-   585  0750  2615               	fcall	_writeBit
-   586                           
-   587                           ;main.c: 99:             writeBit(0);
-   588  0751  3000               	movlw	0
-   589  0752  2615               	fcall	_writeBit
-   590                           
-   591                           ;main.c: 100:             writeBit(1);
-   592  0753  3001               	movlw	1
-   593  0754  2615               	fcall	_writeBit
-   594                           
-   595                           ;main.c: 101:             break;
-   596  0755  2FF5               	goto	l50
-   597  0756                     l825:	
-   598                           
-   599                           ;main.c: 103:             writeBit(1);
-   600  0756  3001               	movlw	1
-   601  0757  2615               	fcall	_writeBit
-   602                           
-   603                           ;main.c: 104:             writeBit(0);
-   604  0758  3000               	movlw	0
-   605  0759  2615               	fcall	_writeBit
-   606                           
-   607                           ;main.c: 105:             writeBit(0);
-   608  075A  3000               	movlw	0
-   609  075B  2615               	fcall	_writeBit
-   610                           
-   611                           ;main.c: 106:             writeBit(1);
-   612  075C  3001               	movlw	1
-   613  075D  2615               	fcall	_writeBit
-   614                           
-   615                           ;main.c: 107:             writeBit(0);
-   616  075E  3000               	movlw	0
-   617  075F  2615               	fcall	_writeBit
-   618                           
-   619                           ;main.c: 108:             writeBit(0);
-   620  0760  3000               	movlw	0
-   621  0761  2615               	fcall	_writeBit
-   622                           
-   623                           ;main.c: 109:             writeBit(1);
-   624  0762  3001               	movlw	1
-   625  0763  2615               	fcall	_writeBit
-   626                           
-   627                           ;main.c: 110:             writeBit(0);
-   628  0764  3000               	movlw	0
-   629  0765  2615               	fcall	_writeBit
-   630                           
-   631                           ;main.c: 111:             break;
-   632  0766  2FF5               	goto	l50
-   633  0767                     l827:	
-   634                           
-   635                           ;main.c: 113:             writeBit(1);
-   636  0767  3001               	movlw	1
-   637  0768  2615               	fcall	_writeBit
-   638                           
-   639                           ;main.c: 114:             writeBit(0);
-   640  0769  3000               	movlw	0
-   641  076A  2615               	fcall	_writeBit
-   642                           
-   643                           ;main.c: 115:             writeBit(0);
-   644  076B  3000               	movlw	0
-   645  076C  2615               	fcall	_writeBit
-   646                           
-   647                           ;main.c: 116:             writeBit(0);
-   648  076D  3000               	movlw	0
-   649  076E  2615               	fcall	_writeBit
-   650                           
-   651                           ;main.c: 117:             writeBit(0);
-   652  076F  3000               	movlw	0
-   653  0770  2615               	fcall	_writeBit
-   654                           
-   655                           ;main.c: 118:             writeBit(0);
-   656  0771  3000               	movlw	0
-   657  0772  2615               	fcall	_writeBit
-   658                           
-   659                           ;main.c: 119:             writeBit(1);
-   660  0773  3001               	movlw	1
-   661  0774  2615               	fcall	_writeBit
-   662                           
-   663                           ;main.c: 120:             writeBit(0);
-   664  0775  3000               	movlw	0
-   665  0776  2615               	fcall	_writeBit
-   666                           
-   667                           ;main.c: 121:             break;
-   668  0777  2FF5               	goto	l50
-   669  0778                     l829:	
-   670                           
-   671                           ;main.c: 123:             writeBit(1);
-   672  0778  3001               	movlw	1
-   673  0779  2615               	fcall	_writeBit
-   674                           
-   675                           ;main.c: 124:             writeBit(1);
-   676  077A  3001               	movlw	1
-   677  077B  2615               	fcall	_writeBit
-   678                           
-   679                           ;main.c: 125:             writeBit(1);
-   680  077C  3001               	movlw	1
-   681  077D  2615               	fcall	_writeBit
-   682                           
-   683                           ;main.c: 126:             writeBit(1);
-   684  077E  3001               	movlw	1
-   685  077F  2615               	fcall	_writeBit
-   686                           
-   687                           ;main.c: 127:             writeBit(1);
-   688  0780  3001               	movlw	1
-   689  0781  2615               	fcall	_writeBit
-   690                           
-   691                           ;main.c: 128:             writeBit(0);
-   692  0782  3000               	movlw	0
-   693  0783  2615               	fcall	_writeBit
-   694                           
-   695                           ;main.c: 129:             writeBit(0);
-   696  0784  3000               	movlw	0
-   697  0785  2615               	fcall	_writeBit
-   698                           
-   699                           ;main.c: 130:             writeBit(0);
-   700  0786  3000               	movlw	0
-   701  0787  2615               	fcall	_writeBit
-   702                           
-   703                           ;main.c: 131:             break;
-   704  0788  2FF5               	goto	l50
-   705  0789                     l831:	
-   706                           
-   707                           ;main.c: 133:             writeBit(1);
-   708  0789  3001               	movlw	1
-   709  078A  2615               	fcall	_writeBit
-   710                           
-   711                           ;main.c: 134:             writeBit(0);
-   712  078B  3000               	movlw	0
-   713  078C  2615               	fcall	_writeBit
-   714                           
-   715                           ;main.c: 135:             writeBit(0);
-   716  078D  3000               	movlw	0
-   717  078E  2615               	fcall	_writeBit
-   718                           
-   719                           ;main.c: 136:             writeBit(0);
-   720  078F  3000               	movlw	0
-   721  0790  2615               	fcall	_writeBit
-   722                           
-   723                           ;main.c: 137:             writeBit(0);
-   724  0791  3000               	movlw	0
-   725  0792  2615               	fcall	_writeBit
-   726                           
-   727                           ;main.c: 138:             writeBit(0);
-   728  0793  3000               	movlw	0
-   729  0794  2615               	fcall	_writeBit
-   730                           
-   731                           ;main.c: 139:             writeBit(0);
-   732  0795  3000               	movlw	0
-   733  0796  2615               	fcall	_writeBit
-   734                           
-   735                           ;main.c: 140:             writeBit(0);
-   736  0797  3000               	movlw	0
-   737  0798  2615               	fcall	_writeBit
-   738                           
-   739                           ;main.c: 141:             break;
-   740  0799  2FF5               	goto	l50
-   741  079A                     l833:	
-   742                           
-   743                           ;main.c: 143:             writeBit(1);
-   744  079A  3001               	movlw	1
-   745  079B  2615               	fcall	_writeBit
-   746                           
-   747                           ;main.c: 144:             writeBit(0);
-   748  079C  3000               	movlw	0
-   749  079D  2615               	fcall	_writeBit
-   750                           
-   751                           ;main.c: 145:             writeBit(0);
-   752  079E  3000               	movlw	0
-   753  079F  2615               	fcall	_writeBit
-   754                           
-   755                           ;main.c: 146:             writeBit(1);
-   756  07A0  3001               	movlw	1
-   757  07A1  2615               	fcall	_writeBit
-   758                           
-   759                           ;main.c: 147:             writeBit(0);
-   760  07A2  3000               	movlw	0
-   761  07A3  2615               	fcall	_writeBit
-   762                           
-   763                           ;main.c: 148:             writeBit(0);
-   764  07A4  3000               	movlw	0
-   765  07A5  2615               	fcall	_writeBit
-   766                           
-   767                           ;main.c: 149:             writeBit(0);
-   768  07A6  3000               	movlw	0
-   769  07A7  2615               	fcall	_writeBit
-   770                           
-   771                           ;main.c: 150:             writeBit(0);
-   772  07A8  3000               	movlw	0
-   773  07A9  2615               	fcall	_writeBit
-   774                           
-   775                           ;main.c: 151:             break;
-   776  07AA  2FF5               	goto	l50
-   777  07AB                     l835:	
-   778                           
-   779                           ;main.c: 153:             writeBit(1);
-   780  07AB  3001               	movlw	1
-   781  07AC  2615               	fcall	_writeBit
-   782                           
-   783                           ;main.c: 154:             writeBit(1);
-   784  07AD  3001               	movlw	1
-   785  07AE  2615               	fcall	_writeBit
-   786                           
-   787                           ;main.c: 155:             writeBit(0);
-   788  07AF  3000               	movlw	0
-   789  07B0  2615               	fcall	_writeBit
-   790                           
-   791                           ;main.c: 156:             writeBit(0);
-   792  07B1  3000               	movlw	0
-   793  07B2  2615               	fcall	_writeBit
-   794                           
-   795                           ;main.c: 157:             writeBit(0);
-   796  07B3  3000               	movlw	0
-   797  07B4  2615               	fcall	_writeBit
-   798                           
-   799                           ;main.c: 158:             writeBit(0);
-   800  07B5  3000               	movlw	0
-   801  07B6  2615               	fcall	_writeBit
-   802                           
-   803                           ;main.c: 159:             writeBit(0);
-   804  07B7  3000               	movlw	0
-   805  07B8  2615               	fcall	_writeBit
-   806                           
-   807                           ;main.c: 160:             writeBit(0);
-   808  07B9  3000               	movlw	0
-   809  07BA  2615               	fcall	_writeBit
-   810                           
-   811                           ;main.c: 161:             break;
-   812  07BB  2FF5               	goto	l50
-   813  07BC                     l837:	
-   814                           
-   815                           ;main.c: 163:             writeBit(1);
-   816  07BC  3001               	movlw	1
-   817  07BD  2615               	fcall	_writeBit
-   818                           
-   819                           ;main.c: 164:             writeBit(1);
-   820  07BE  3001               	movlw	1
-   821  07BF  2615               	fcall	_writeBit
-   822                           
-   823                           ;main.c: 165:             writeBit(1);
-   824  07C0  3001               	movlw	1
-   825  07C1  2615               	fcall	_writeBit
-   826                           
-   827                           ;main.c: 166:             writeBit(1);
-   828  07C2  3001               	movlw	1
-   829  07C3  2615               	fcall	_writeBit
-   830                           
-   831                           ;main.c: 167:             writeBit(1);
-   832  07C4  3001               	movlw	1
-   833  07C5  2615               	fcall	_writeBit
-   834                           
-   835                           ;main.c: 168:             writeBit(1);
-   836  07C6  3001               	movlw	1
-   837  07C7  2615               	fcall	_writeBit
-   838                           
-   839                           ;main.c: 169:             writeBit(1);
-   840  07C8  3001               	movlw	1
-   841  07C9  2615               	fcall	_writeBit
-   842                           
-   843                           ;main.c: 170:             writeBit(1);
-   844  07CA  3001               	movlw	1
-   845  07CB  2615               	fcall	_writeBit
-   846                           
-   847                           ;main.c: 171:             break;
-   848  07CC  2FF5               	goto	l50
-   849  07CD                     l841:	
-   850                           
-   851                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+   507                           ;main.c: 60:     RB6 = 0;
+   508  070D  1283               	bcf	3,5	;RP0=0, select bank0
+   509  070E  1303               	bcf	3,6	;RP1=0, select bank0
+   510  070F  1306               	bcf	6,6	;volatile
+   511                           
+   512                           ;main.c: 61:     switch (num)
+   513  0710  2FCC               	goto	l935
+   514  0711                     l911:	
+   515                           
+   516                           ;main.c: 64:             writeBit(point);
+   517  0711  0878               	movf	writeNumber@point,w
+   518  0712  25E3               	fcall	_writeBit
+   519                           
+   520                           ;main.c: 65:             writeBit(1);
+   521  0713  3001               	movlw	1
+   522  0714  25E3               	fcall	_writeBit
+   523                           
+   524                           ;main.c: 66:             writeBit(1);
+   525  0715  3001               	movlw	1
+   526  0716  25E3               	fcall	_writeBit
+   527                           
+   528                           ;main.c: 67:             writeBit(1);
+   529  0717  3001               	movlw	1
+   530  0718  25E3               	fcall	_writeBit
+   531                           
+   532                           ;main.c: 68:             writeBit(1);
+   533  0719  3001               	movlw	1
+   534  071A  25E3               	fcall	_writeBit
+   535                           
+   536                           ;main.c: 69:             writeBit(0);
+   537  071B  3000               	movlw	0
+   538  071C  25E3               	fcall	_writeBit
+   539                           
+   540                           ;main.c: 70:             writeBit(0);
+   541  071D  3000               	movlw	0
+   542  071E  25E3               	fcall	_writeBit
+   543                           
+   544                           ;main.c: 71:             writeBit(1);
+   545  071F  3001               	movlw	1
+   546  0720  25E3               	fcall	_writeBit
+   547                           
+   548                           ;main.c: 72:             break;
+   549  0721  2FF7               	goto	l52
+   550  0722                     l913:	
+   551                           
+   552                           ;main.c: 74:             writeBit(point);
+   553  0722  0878               	movf	writeNumber@point,w
+   554  0723  25E3               	fcall	_writeBit
+   555                           
+   556                           ;main.c: 75:             writeBit(0);
+   557  0724  3000               	movlw	0
+   558  0725  25E3               	fcall	_writeBit
+   559                           
+   560                           ;main.c: 76:             writeBit(1);
+   561  0726  3001               	movlw	1
+   562  0727  25E3               	fcall	_writeBit
+   563                           
+   564                           ;main.c: 77:             writeBit(0);
+   565  0728  3000               	movlw	0
+   566  0729  25E3               	fcall	_writeBit
+   567                           
+   568                           ;main.c: 78:             writeBit(0);
+   569  072A  3000               	movlw	0
+   570  072B  25E3               	fcall	_writeBit
+   571                           
+   572                           ;main.c: 79:             writeBit(1);
+   573  072C  3001               	movlw	1
+   574  072D  25E3               	fcall	_writeBit
+   575                           
+   576                           ;main.c: 80:             writeBit(0);
+   577  072E  3000               	movlw	0
+   578  072F  25E3               	fcall	_writeBit
+   579                           
+   580                           ;main.c: 81:             writeBit(0);
+   581  0730  3000               	movlw	0
+   582  0731  25E3               	fcall	_writeBit
+   583                           
+   584                           ;main.c: 82:             break;
+   585  0732  2FF7               	goto	l52
+   586  0733                     l915:	
+   587                           
+   588                           ;main.c: 84:             writeBit(point);
+   589  0733  0878               	movf	writeNumber@point,w
+   590  0734  25E3               	fcall	_writeBit
+   591                           
+   592                           ;main.c: 85:             writeBit(0);
+   593  0735  3000               	movlw	0
+   594  0736  25E3               	fcall	_writeBit
+   595                           
+   596                           ;main.c: 86:             writeBit(1);
+   597  0737  3001               	movlw	1
+   598  0738  25E3               	fcall	_writeBit
+   599                           
+   600                           ;main.c: 87:             writeBit(1);
+   601  0739  3001               	movlw	1
+   602  073A  25E3               	fcall	_writeBit
+   603                           
+   604                           ;main.c: 88:             writeBit(0);
+   605  073B  3000               	movlw	0
+   606  073C  25E3               	fcall	_writeBit
+   607                           
+   608                           ;main.c: 89:             writeBit(0);
+   609  073D  3000               	movlw	0
+   610  073E  25E3               	fcall	_writeBit
+   611                           
+   612                           ;main.c: 90:             writeBit(0);
+   613  073F  3000               	movlw	0
+   614  0740  25E3               	fcall	_writeBit
+   615                           
+   616                           ;main.c: 91:             writeBit(0);
+   617  0741  3000               	movlw	0
+   618  0742  25E3               	fcall	_writeBit
+   619                           
+   620                           ;main.c: 92:             break;
+   621  0743  2FF7               	goto	l52
+   622  0744                     l917:	
+   623                           
+   624                           ;main.c: 94:             writeBit(point);
+   625  0744  0878               	movf	writeNumber@point,w
+   626  0745  25E3               	fcall	_writeBit
+   627                           
+   628                           ;main.c: 95:             writeBit(0);
+   629  0746  3000               	movlw	0
+   630  0747  25E3               	fcall	_writeBit
+   631                           
+   632                           ;main.c: 96:             writeBit(0);
+   633  0748  3000               	movlw	0
+   634  0749  25E3               	fcall	_writeBit
+   635                           
+   636                           ;main.c: 97:             writeBit(1);
+   637  074A  3001               	movlw	1
+   638  074B  25E3               	fcall	_writeBit
+   639                           
+   640                           ;main.c: 98:             writeBit(1);
+   641  074C  3001               	movlw	1
+   642  074D  25E3               	fcall	_writeBit
+   643                           
+   644                           ;main.c: 99:             writeBit(0);
+   645  074E  3000               	movlw	0
+   646  074F  25E3               	fcall	_writeBit
+   647                           
+   648                           ;main.c: 100:             writeBit(0);
+   649  0750  3000               	movlw	0
+   650  0751  25E3               	fcall	_writeBit
+   651                           
+   652                           ;main.c: 101:             writeBit(1);
+   653  0752  3001               	movlw	1
+   654  0753  25E3               	fcall	_writeBit
+   655                           
+   656                           ;main.c: 102:             break;
+   657  0754  2FF7               	goto	l52
+   658  0755                     l919:	
+   659                           
+   660                           ;main.c: 104:             writeBit(point);
+   661  0755  0878               	movf	writeNumber@point,w
+   662  0756  25E3               	fcall	_writeBit
+   663                           
+   664                           ;main.c: 105:             writeBit(0);
+   665  0757  3000               	movlw	0
+   666  0758  25E3               	fcall	_writeBit
+   667                           
+   668                           ;main.c: 106:             writeBit(0);
+   669  0759  3000               	movlw	0
+   670  075A  25E3               	fcall	_writeBit
+   671                           
+   672                           ;main.c: 107:             writeBit(1);
+   673  075B  3001               	movlw	1
+   674  075C  25E3               	fcall	_writeBit
+   675                           
+   676                           ;main.c: 108:             writeBit(0);
+   677  075D  3000               	movlw	0
+   678  075E  25E3               	fcall	_writeBit
+   679                           
+   680                           ;main.c: 109:             writeBit(0);
+   681  075F  3000               	movlw	0
+   682  0760  25E3               	fcall	_writeBit
+   683                           
+   684                           ;main.c: 110:             writeBit(1);
+   685  0761  3001               	movlw	1
+   686  0762  25E3               	fcall	_writeBit
+   687                           
+   688                           ;main.c: 111:             writeBit(0);
+   689  0763  3000               	movlw	0
+   690  0764  25E3               	fcall	_writeBit
+   691                           
+   692                           ;main.c: 112:             break;
+   693  0765  2FF7               	goto	l52
+   694  0766                     l921:	
+   695                           
+   696                           ;main.c: 114:             writeBit(point);
+   697  0766  0878               	movf	writeNumber@point,w
+   698  0767  25E3               	fcall	_writeBit
+   699                           
+   700                           ;main.c: 115:             writeBit(0);
+   701  0768  3000               	movlw	0
+   702  0769  25E3               	fcall	_writeBit
+   703                           
+   704                           ;main.c: 116:             writeBit(0);
+   705  076A  3000               	movlw	0
+   706  076B  25E3               	fcall	_writeBit
+   707                           
+   708                           ;main.c: 117:             writeBit(0);
+   709  076C  3000               	movlw	0
+   710  076D  25E3               	fcall	_writeBit
+   711                           
+   712                           ;main.c: 118:             writeBit(0);
+   713  076E  3000               	movlw	0
+   714  076F  25E3               	fcall	_writeBit
+   715                           
+   716                           ;main.c: 119:             writeBit(0);
+   717  0770  3000               	movlw	0
+   718  0771  25E3               	fcall	_writeBit
+   719                           
+   720                           ;main.c: 120:             writeBit(1);
+   721  0772  3001               	movlw	1
+   722  0773  25E3               	fcall	_writeBit
+   723                           
+   724                           ;main.c: 121:             writeBit(0);
+   725  0774  3000               	movlw	0
+   726  0775  25E3               	fcall	_writeBit
+   727                           
+   728                           ;main.c: 122:             break;
+   729  0776  2FF7               	goto	l52
+   730  0777                     l923:	
+   731                           
+   732                           ;main.c: 124:             writeBit(point);
+   733  0777  0878               	movf	writeNumber@point,w
+   734  0778  25E3               	fcall	_writeBit
+   735                           
+   736                           ;main.c: 125:             writeBit(1);
+   737  0779  3001               	movlw	1
+   738  077A  25E3               	fcall	_writeBit
+   739                           
+   740                           ;main.c: 126:             writeBit(1);
+   741  077B  3001               	movlw	1
+   742  077C  25E3               	fcall	_writeBit
+   743                           
+   744                           ;main.c: 127:             writeBit(1);
+   745  077D  3001               	movlw	1
+   746  077E  25E3               	fcall	_writeBit
+   747                           
+   748                           ;main.c: 128:             writeBit(1);
+   749  077F  3001               	movlw	1
+   750  0780  25E3               	fcall	_writeBit
+   751                           
+   752                           ;main.c: 129:             writeBit(0);
+   753  0781  3000               	movlw	0
+   754  0782  25E3               	fcall	_writeBit
+   755                           
+   756                           ;main.c: 130:             writeBit(0);
+   757  0783  3000               	movlw	0
+   758  0784  25E3               	fcall	_writeBit
+   759                           
+   760                           ;main.c: 131:             writeBit(0);
+   761  0785  3000               	movlw	0
+   762  0786  25E3               	fcall	_writeBit
+   763                           
+   764                           ;main.c: 132:             break;
+   765  0787  2FF7               	goto	l52
+   766  0788                     l925:	
+   767                           
+   768                           ;main.c: 134:             writeBit(point);
+   769  0788  0878               	movf	writeNumber@point,w
+   770  0789  25E3               	fcall	_writeBit
+   771                           
+   772                           ;main.c: 135:             writeBit(0);
+   773  078A  3000               	movlw	0
+   774  078B  25E3               	fcall	_writeBit
+   775                           
+   776                           ;main.c: 136:             writeBit(0);
+   777  078C  3000               	movlw	0
+   778  078D  25E3               	fcall	_writeBit
+   779                           
+   780                           ;main.c: 137:             writeBit(0);
+   781  078E  3000               	movlw	0
+   782  078F  25E3               	fcall	_writeBit
+   783                           
+   784                           ;main.c: 138:             writeBit(0);
+   785  0790  3000               	movlw	0
+   786  0791  25E3               	fcall	_writeBit
+   787                           
+   788                           ;main.c: 139:             writeBit(0);
+   789  0792  3000               	movlw	0
+   790  0793  25E3               	fcall	_writeBit
+   791                           
+   792                           ;main.c: 140:             writeBit(0);
+   793  0794  3000               	movlw	0
+   794  0795  25E3               	fcall	_writeBit
+   795                           
+   796                           ;main.c: 141:             writeBit(0);
+   797  0796  3000               	movlw	0
+   798  0797  25E3               	fcall	_writeBit
+   799                           
+   800                           ;main.c: 142:             break;
+   801  0798  2FF7               	goto	l52
+   802  0799                     l927:	
+   803                           
+   804                           ;main.c: 144:             writeBit(point);
+   805  0799  0878               	movf	writeNumber@point,w
+   806  079A  25E3               	fcall	_writeBit
+   807                           
+   808                           ;main.c: 145:             writeBit(0);
+   809  079B  3000               	movlw	0
+   810  079C  25E3               	fcall	_writeBit
+   811                           
+   812                           ;main.c: 146:             writeBit(0);
+   813  079D  3000               	movlw	0
+   814  079E  25E3               	fcall	_writeBit
+   815                           
+   816                           ;main.c: 147:             writeBit(1);
+   817  079F  3001               	movlw	1
+   818  07A0  25E3               	fcall	_writeBit
+   819                           
+   820                           ;main.c: 148:             writeBit(0);
+   821  07A1  3000               	movlw	0
+   822  07A2  25E3               	fcall	_writeBit
+   823                           
+   824                           ;main.c: 149:             writeBit(0);
+   825  07A3  3000               	movlw	0
+   826  07A4  25E3               	fcall	_writeBit
+   827                           
+   828                           ;main.c: 150:             writeBit(0);
+   829  07A5  3000               	movlw	0
+   830  07A6  25E3               	fcall	_writeBit
+   831                           
+   832                           ;main.c: 151:             writeBit(0);
+   833  07A7  3000               	movlw	0
+   834  07A8  25E3               	fcall	_writeBit
+   835                           
+   836                           ;main.c: 152:             break;
+   837  07A9  2FF7               	goto	l52
+   838  07AA                     l929:	
+   839                           
+   840                           ;main.c: 154:             writeBit(point);
+   841  07AA  0878               	movf	writeNumber@point,w
+   842  07AB  25E3               	fcall	_writeBit
+   843                           
+   844                           ;main.c: 155:             writeBit(1);
+   845  07AC  3001               	movlw	1
+   846  07AD  25E3               	fcall	_writeBit
+   847                           
+   848                           ;main.c: 156:             writeBit(0);
+   849  07AE  3000               	movlw	0
+   850  07AF  25E3               	fcall	_writeBit
+   851                           
+   852                           ;main.c: 157:             writeBit(0);
+   853  07B0  3000               	movlw	0
+   854  07B1  25E3               	fcall	_writeBit
+   855                           
+   856                           ;main.c: 158:             writeBit(0);
+   857  07B2  3000               	movlw	0
+   858  07B3  25E3               	fcall	_writeBit
+   859                           
+   860                           ;main.c: 159:             writeBit(0);
+   861  07B4  3000               	movlw	0
+   862  07B5  25E3               	fcall	_writeBit
+   863                           
+   864                           ;main.c: 160:             writeBit(0);
+   865  07B6  3000               	movlw	0
+   866  07B7  25E3               	fcall	_writeBit
+   867                           
+   868                           ;main.c: 161:             writeBit(0);
+   869  07B8  3000               	movlw	0
+   870  07B9  25E3               	fcall	_writeBit
+   871                           
+   872                           ;main.c: 162:             break;
+   873  07BA  2FF7               	goto	l52
+   874  07BB                     l931:	
+   875                           
+   876                           ;main.c: 164:             writeBit(1);
+   877  07BB  3001               	movlw	1
+   878  07BC  25E3               	fcall	_writeBit
+   879                           
+   880                           ;main.c: 165:             writeBit(1);
+   881  07BD  3001               	movlw	1
+   882  07BE  25E3               	fcall	_writeBit
+   883                           
+   884                           ;main.c: 166:             writeBit(1);
+   885  07BF  3001               	movlw	1
+   886  07C0  25E3               	fcall	_writeBit
+   887                           
+   888                           ;main.c: 167:             writeBit(1);
+   889  07C1  3001               	movlw	1
+   890  07C2  25E3               	fcall	_writeBit
+   891                           
+   892                           ;main.c: 168:             writeBit(1);
+   893  07C3  3001               	movlw	1
+   894  07C4  25E3               	fcall	_writeBit
+   895                           
+   896                           ;main.c: 169:             writeBit(1);
+   897  07C5  3001               	movlw	1
+   898  07C6  25E3               	fcall	_writeBit
+   899                           
+   900                           ;main.c: 170:             writeBit(1);
+   901  07C7  3001               	movlw	1
+   902  07C8  25E3               	fcall	_writeBit
+   903                           
+   904                           ;main.c: 171:             writeBit(1);
+   905  07C9  3001               	movlw	1
+   906  07CA  25E3               	fcall	_writeBit
+   907                           
+   908                           ;main.c: 172:             break;
+   909  07CB  2FF7               	goto	l52
+   910  07CC                     l935:	
+   911  07CC  087B               	movf	writeNumber@num,w
+   912  07CD  00F9               	movwf	??_writeNumber
+   913  07CE  01FA               	clrf	??_writeNumber+1
+   914                           
+   915                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
       +                          itches
-   852                           ; Switch size 1, requested type "simple"
-   853                           ; Number of cases is 1, Range of values is 0 to 0
-   854                           ; switch strategies available:
-   855                           ; Name         Instructions Cycles
-   856                           ; simple_byte            4     3 (average)
-   857                           ; direct_byte            7     6 (fixed)
-   858                           ; jumptable            260     6 (fixed)
-   859                           ;	Chosen strategy is simple_byte
-   860  07CD  087C               	movf	writeNumber@num+1,w
-   861  07CE  3A00               	xorlw	0	; case 0
-   862  07CF  1903               	skipnz
-   863  07D0  2FD2               	goto	l927
-   864  07D1  2FF5               	goto	l50
-   865  07D2                     l927:	
-   866                           
-   867                           ; Switch size 1, requested type "simple"
-   868                           ; Number of cases is 11, Range of values is 0 to 10
-   869                           ; switch strategies available:
-   870                           ; Name         Instructions Cycles
-   871                           ; direct_byte           17     6 (fixed)
-   872                           ; simple_byte           34    18 (average)
-   873                           ; jumptable            260     6 (fixed)
-   874                           ;	Chosen strategy is simple_byte
-   875  07D2  087B               	movf	writeNumber@num,w
-   876  07D3  3A00               	xorlw	0	; case 0
-   877  07D4  1903               	skipnz
-   878  07D5  2FAB               	goto	l835
-   879  07D6  3A01               	xorlw	1	; case 1
-   880  07D7  1903               	skipnz
-   881  07D8  2F12               	goto	l817
-   882  07D9  3A03               	xorlw	3	; case 2
-   883  07DA  1903               	skipnz
-   884  07DB  2F23               	goto	l819
-   885  07DC  3A01               	xorlw	1	; case 3
-   886  07DD  1903               	skipnz
-   887  07DE  2F34               	goto	l821
-   888  07DF  3A07               	xorlw	7	; case 4
-   889  07E0  1903               	skipnz
-   890  07E1  2F45               	goto	l823
-   891  07E2  3A01               	xorlw	1	; case 5
-   892  07E3  1903               	skipnz
-   893  07E4  2F56               	goto	l825
-   894  07E5  3A03               	xorlw	3	; case 6
-   895  07E6  1903               	skipnz
-   896  07E7  2F67               	goto	l827
-   897  07E8  3A01               	xorlw	1	; case 7
-   898  07E9  1903               	skipnz
-   899  07EA  2F78               	goto	l829
-   900  07EB  3A0F               	xorlw	15	; case 8
-   901  07EC  1903               	skipnz
-   902  07ED  2F89               	goto	l831
-   903  07EE  3A01               	xorlw	1	; case 9
-   904  07EF  1903               	skipnz
-   905  07F0  2F9A               	goto	l833
-   906  07F1  3A03               	xorlw	3	; case 10
-   907  07F2  1903               	skipnz
-   908  07F3  2FBC               	goto	l837
-   909  07F4  2FF5               	goto	l50
-   910  07F5                     l50:	
-   911                           
-   912                           ;main.c: 174:     RB6 = 1;
-   913  07F5  1283               	bcf	3,5	;RP0=0, select bank0
-   914  07F6  1303               	bcf	3,6	;RP1=0, select bank0
-   915  07F7  1706               	bsf	6,6	;volatile
-   916                           
-   917                           ;main.c: 175:     addMinute();
-   918  07F8  2684               	fcall	_addMinute
-   919  07F9  0008               	return
-   920  07FA                     __end_of_writeNumber:	
-   921                           
-   922                           	psect	text2
-   923  0615                     __ptext2:	
-   924 ;; *************** function _writeBit *****************
-   925 ;; Defined at:
-   926 ;;		line 21 in file "main.c"
-   927 ;; Parameters:    Size  Location     Type
-   928 ;;  _bit            1    wreg     unsigned char 
-   929 ;; Auto vars:     Size  Location     Type
-   930 ;;  _bit            1    0[COMMON] unsigned char 
-   931 ;; Return value:  Size  Location     Type
-   932 ;;                  1    wreg      void 
-   933 ;; Registers used:
-   934 ;;		wreg
-   935 ;; Tracked objects:
-   936 ;;		On entry : 0/0
-   937 ;;		On exit  : 0/0
-   938 ;;		Unchanged: 0/0
-   939 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
-   940 ;;      Params:         0       0       0       0
-   941 ;;      Locals:         1       0       0       0
-   942 ;;      Temps:          0       0       0       0
-   943 ;;      Totals:         1       0       0       0
-   944 ;;Total ram usage:        1 bytes
-   945 ;; Hardware stack levels used:    1
-   946 ;; This function calls:
-   947 ;;		Nothing
-   948 ;; This function is called by:
-   949 ;;		_writeNumber
-   950 ;; This function uses a non-reentrant model
-   951 ;;
-   952                           
-   953                           
-   954                           ;psect for function _writeBit
-   955  0615                     _writeBit:	
-   956                           
-   957                           ;incstack = 0
-   958                           ; Regs used in _writeBit: [wreg]
-   959                           ;writeBit@_bit stored from wreg
-   960  0615  00FA               	movwf	writeBit@_bit
-   961                           
-   962                           ;main.c: 21: void writeBit(char _bit);main.c: 22: {;main.c: 23:   RB7 = 0;
-   963  0616  1283               	bcf	3,5	;RP0=0, select bank0
-   964  0617  1303               	bcf	3,6	;RP1=0, select bank0
-   965  0618  1386               	bcf	6,7	;volatile
-   966                           
-   967                           ;main.c: 24:   RB5 = _bit;
-   968  0619  1C7A               	btfss	writeBit@_bit,0
-   969  061A  2E1F               	goto	u10
-   970  061B  1283               	bcf	3,5	;RP0=0, select bank0
-   971  061C  1303               	bcf	3,6	;RP1=0, select bank0
-   972  061D  1686               	bsf	6,5	;volatile
-   973  061E  2E22               	goto	u24
-   974  061F                     u10:	
-   975  061F  1283               	bcf	3,5	;RP0=0, select bank0
-   976  0620  1303               	bcf	3,6	;RP1=0, select bank0
-   977  0621  1286               	bcf	6,5	;volatile
-   978  0622                     u24:	
-   979                           
-   980                           ;main.c: 25:   RB7 = 1;
-   981  0622  1786               	bsf	6,7	;volatile
-   982                           
-   983                           ;main.c: 26:   RB7 = 0;
-   984  0623  1386               	bcf	6,7	;volatile
-   985  0624  0008               	return
-   986  0625                     __end_of_writeBit:	
-   987                           
-   988                           	psect	text3
-   989  0684                     __ptext3:	
-   990 ;; *************** function _addMinute *****************
-   991 ;; Defined at:
-   992 ;;		line 29 in file "main.c"
-   993 ;; Parameters:    Size  Location     Type
-   994 ;;		None
-   995 ;; Auto vars:     Size  Location     Type
-   996 ;;		None
-   997 ;; Return value:  Size  Location     Type
-   998 ;;                  1    wreg      void 
-   999 ;; Registers used:
-  1000 ;;		wreg, status,2, status,0, btemp+1
-  1001 ;; Tracked objects:
-  1002 ;;		On entry : 0/0
-  1003 ;;		On exit  : 0/0
-  1004 ;;		Unchanged: 0/0
-  1005 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
-  1006 ;;      Params:         0       0       0       0
-  1007 ;;      Locals:         0       0       0       0
-  1008 ;;      Temps:          0       0       0       0
-  1009 ;;      Totals:         0       0       0       0
-  1010 ;;Total ram usage:        0 bytes
-  1011 ;; Hardware stack levels used:    1
-  1012 ;; This function calls:
-  1013 ;;		Nothing
-  1014 ;; This function is called by:
-  1015 ;;		_writeNumber
-  1016 ;; This function uses a non-reentrant model
-  1017 ;;
-  1018                           
-  1019                           
-  1020                           ;psect for function _addMinute
-  1021  0684                     _addMinute:	
-  1022                           
-  1023                           ;main.c: 30:     if (TMR0 == 255){
-  1024                           
-  1025                           ;incstack = 0
-  1026                           ; Regs used in _addMinute: [wreg+status,2+status,0+btemp+1]
-  1027  0684  1283               	bcf	3,5	;RP0=0, select bank0
-  1028  0685  1303               	bcf	3,6	;RP1=0, select bank0
-  1029  0686  0A01               	incf	1,w	;volatile
-  1030  0687  1D03               	btfss	3,2
-  1031  0688  0008               	return
-  1032                           
-  1033                           ;main.c: 31:         cnt = cnt + 1;
-  1034  0689  0876               	movf	_cnt,w
-  1035  068A  3E01               	addlw	1
-  1036  068B  00F6               	movwf	_cnt
-  1037  068C  0877               	movf	_cnt+1,w
-  1038  068D  1803               	skipnc
-  1039  068E  3E01               	addlw	1
-  1040  068F  3E00               	addlw	0
-  1041  0690  00F7               	movwf	_cnt+1
-  1042                           
-  1043                           ;main.c: 32:         TMR0 = 99;
-  1044  0691  3063               	movlw	99
-  1045  0692  0081               	movwf	1	;volatile
+   916                           ; Switch size 1, requested type "simple"
+   917                           ; Number of cases is 1, Range of values is 0 to 0
+   918                           ; switch strategies available:
+   919                           ; Name         Instructions Cycles
+   920                           ; simple_byte            4     3 (average)
+   921                           ; direct_byte            7     6 (fixed)
+   922                           ; jumptable            260     6 (fixed)
+   923                           ;	Chosen strategy is simple_byte
+   924  07CF  087A               	movf	??_writeNumber+1,w
+   925  07D0  3A00               	xorlw	0	; case 0
+   926  07D1  1903               	skipnz
+   927  07D2  2FD4               	goto	l1027
+   928  07D3  2FF7               	goto	l52
+   929  07D4                     l1027:	
+   930                           
+   931                           ; Switch size 1, requested type "simple"
+   932                           ; Number of cases is 11, Range of values is 0 to 10
+   933                           ; switch strategies available:
+   934                           ; Name         Instructions Cycles
+   935                           ; direct_byte           17     6 (fixed)
+   936                           ; simple_byte           34    18 (average)
+   937                           ; jumptable            260     6 (fixed)
+   938                           ;	Chosen strategy is simple_byte
+   939  07D4  0879               	movf	??_writeNumber,w
+   940  07D5  3A00               	xorlw	0	; case 0
+   941  07D6  1903               	skipnz
+   942  07D7  2FAA               	goto	l929
+   943  07D8  3A01               	xorlw	1	; case 1
+   944  07D9  1903               	skipnz
+   945  07DA  2F11               	goto	l911
+   946  07DB  3A03               	xorlw	3	; case 2
+   947  07DC  1903               	skipnz
+   948  07DD  2F22               	goto	l913
+   949  07DE  3A01               	xorlw	1	; case 3
+   950  07DF  1903               	skipnz
+   951  07E0  2F33               	goto	l915
+   952  07E1  3A07               	xorlw	7	; case 4
+   953  07E2  1903               	skipnz
+   954  07E3  2F44               	goto	l917
+   955  07E4  3A01               	xorlw	1	; case 5
+   956  07E5  1903               	skipnz
+   957  07E6  2F55               	goto	l919
+   958  07E7  3A03               	xorlw	3	; case 6
+   959  07E8  1903               	skipnz
+   960  07E9  2F66               	goto	l921
+   961  07EA  3A01               	xorlw	1	; case 7
+   962  07EB  1903               	skipnz
+   963  07EC  2F77               	goto	l923
+   964  07ED  3A0F               	xorlw	15	; case 8
+   965  07EE  1903               	skipnz
+   966  07EF  2F88               	goto	l925
+   967  07F0  3A01               	xorlw	1	; case 9
+   968  07F1  1903               	skipnz
+   969  07F2  2F99               	goto	l927
+   970  07F3  3A03               	xorlw	3	; case 10
+   971  07F4  1903               	skipnz
+   972  07F5  2FBB               	goto	l931
+   973  07F6  2FF7               	goto	l52
+   974  07F7                     l52:	
+   975                           
+   976                           ;main.c: 175:     RB6 = 1;
+   977  07F7  1283               	bcf	3,5	;RP0=0, select bank0
+   978  07F8  1303               	bcf	3,6	;RP1=0, select bank0
+   979  07F9  1706               	bsf	6,6	;volatile
+   980                           
+   981                           ;main.c: 176:     addMinute();
+   982  07FA  2673               	fcall	_addMinute
+   983  07FB  0008               	return
+   984  07FC                     __end_of_writeNumber:	
+   985                           
+   986                           	psect	text2
+   987  05E3                     __ptext2:	
+   988 ;; *************** function _writeBit *****************
+   989 ;; Defined at:
+   990 ;;		line 22 in file "main.c"
+   991 ;; Parameters:    Size  Location     Type
+   992 ;;  _bit            1    wreg     unsigned char 
+   993 ;; Auto vars:     Size  Location     Type
+   994 ;;  _bit            1    0[COMMON] unsigned char 
+   995 ;; Return value:  Size  Location     Type
+   996 ;;                  1    wreg      void 
+   997 ;; Registers used:
+   998 ;;		wreg
+   999 ;; Tracked objects:
+  1000 ;;		On entry : 0/0
+  1001 ;;		On exit  : 0/0
+  1002 ;;		Unchanged: 0/0
+  1003 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1004 ;;      Params:         0       0       0       0
+  1005 ;;      Locals:         1       0       0       0
+  1006 ;;      Temps:          0       0       0       0
+  1007 ;;      Totals:         1       0       0       0
+  1008 ;;Total ram usage:        1 bytes
+  1009 ;; Hardware stack levels used:    1
+  1010 ;; This function calls:
+  1011 ;;		Nothing
+  1012 ;; This function is called by:
+  1013 ;;		_writeNumber
+  1014 ;; This function uses a non-reentrant model
+  1015 ;;
+  1016                           
+  1017                           
+  1018                           ;psect for function _writeBit
+  1019  05E3                     _writeBit:	
+  1020                           
+  1021                           ;incstack = 0
+  1022                           ; Regs used in _writeBit: [wreg]
+  1023                           ;writeBit@_bit stored from wreg
+  1024  05E3  00F0               	movwf	writeBit@_bit
+  1025                           
+  1026                           ;main.c: 22: void writeBit(char _bit);main.c: 23: {;main.c: 24:   RB7 = 0;
+  1027  05E4  1283               	bcf	3,5	;RP0=0, select bank0
+  1028  05E5  1303               	bcf	3,6	;RP1=0, select bank0
+  1029  05E6  1386               	bcf	6,7	;volatile
+  1030                           
+  1031                           ;main.c: 25:   RB5 = _bit;
+  1032  05E7  1C70               	btfss	writeBit@_bit,0
+  1033  05E8  2DED               	goto	u180
+  1034  05E9  1283               	bcf	3,5	;RP0=0, select bank0
+  1035  05EA  1303               	bcf	3,6	;RP1=0, select bank0
+  1036  05EB  1686               	bsf	6,5	;volatile
+  1037  05EC  2DF0               	goto	u194
+  1038  05ED                     u180:	
+  1039  05ED  1283               	bcf	3,5	;RP0=0, select bank0
+  1040  05EE  1303               	bcf	3,6	;RP1=0, select bank0
+  1041  05EF  1286               	bcf	6,5	;volatile
+  1042  05F0                     u194:	
+  1043                           
+  1044                           ;main.c: 26:   RB7 = 1;
+  1045  05F0  1786               	bsf	6,7	;volatile
   1046                           
-  1047                           ;main.c: 33:         if (cnt == 1500){
-  1048  0693  30DC               	movlw	220
-  1049  0694  0676               	xorwf	_cnt,w
-  1050  0695  3005               	movlw	5
-  1051  0696  1903               	skipnz
-  1052  0697  0677               	xorwf	_cnt+1,w
-  1053  0698  1D03               	btfss	3,2
-  1054  0699  0008               	return
-  1055                           
-  1056                           ;main.c: 34:             cnt = 0;
-  1057  069A  01F6               	clrf	_cnt
-  1058  069B  01F7               	clrf	_cnt+1
-  1059                           
-  1060                           ;main.c: 35:             m2 = m2 + 1;
-  1061  069C  0870               	movf	_m2,w
-  1062  069D  3E01               	addlw	1
-  1063  069E  00F0               	movwf	_m2
-  1064  069F  0871               	movf	_m2+1,w
-  1065  06A0  1803               	skipnc
-  1066  06A1  3E01               	addlw	1
-  1067  06A2  3E00               	addlw	0
-  1068  06A3  00F1               	movwf	_m2+1
-  1069                           
-  1070                           ;main.c: 36:             if (m2 > 9){
-  1071  06A4  0871               	movf	_m2+1,w
-  1072  06A5  3A80               	xorlw	128
-  1073  06A6  00FF               	movwf	127
-  1074  06A7  3080               	movlw	128
-  1075  06A8  027F               	subwf	127,w
-  1076  06A9  1D03               	skipz
-  1077  06AA  2EAD               	goto	u55
-  1078  06AB  300A               	movlw	10
-  1079  06AC  0270               	subwf	_m2,w
-  1080  06AD                     u55:	
-  1081  06AD  1C03               	skipc
-  1082  06AE  2EB9               	goto	l681
+  1047                           ;main.c: 27:   RB7 = 0;
+  1048  05F1  1386               	bcf	6,7	;volatile
+  1049  05F2  0008               	return
+  1050  05F3                     __end_of_writeBit:	
+  1051                           
+  1052                           	psect	text3
+  1053  0673                     __ptext3:	
+  1054 ;; *************** function _addMinute *****************
+  1055 ;; Defined at:
+  1056 ;;		line 30 in file "main.c"
+  1057 ;; Parameters:    Size  Location     Type
+  1058 ;;		None
+  1059 ;; Auto vars:     Size  Location     Type
+  1060 ;;		None
+  1061 ;; Return value:  Size  Location     Type
+  1062 ;;                  1    wreg      void 
+  1063 ;; Registers used:
+  1064 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+  1065 ;; Tracked objects:
+  1066 ;;		On entry : 0/0
+  1067 ;;		On exit  : 0/0
+  1068 ;;		Unchanged: 0/0
+  1069 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1070 ;;      Params:         0       0       0       0
+  1071 ;;      Locals:         0       0       0       0
+  1072 ;;      Temps:          0       0       0       0
+  1073 ;;      Totals:         0       0       0       0
+  1074 ;;Total ram usage:        0 bytes
+  1075 ;; Hardware stack levels used:    1
+  1076 ;; Hardware stack levels required when called:    2
+  1077 ;; This function calls:
+  1078 ;;		___eetoc
+  1079 ;; This function is called by:
+  1080 ;;		_writeNumber
+  1081 ;; This function uses a non-reentrant model
+  1082 ;;
   1083                           
-  1084                           ;main.c: 37:                 m2 = 0;
-  1085  06AF  01F0               	clrf	_m2
-  1086  06B0  01F1               	clrf	_m2+1
+  1084                           
+  1085                           ;psect for function _addMinute
+  1086  0673                     _addMinute:	
   1087                           
-  1088                           ;main.c: 38:                 m1 = m1 + 1;
-  1089  06B1  0872               	movf	_m1,w
-  1090  06B2  3E01               	addlw	1
-  1091  06B3  00F2               	movwf	_m1
-  1092  06B4  0873               	movf	_m1+1,w
-  1093  06B5  1803               	skipnc
-  1094  06B6  3E01               	addlw	1
-  1095  06B7  3E00               	addlw	0
-  1096  06B8  00F3               	movwf	_m1+1
-  1097  06B9                     l681:	
-  1098                           
-  1099                           ;main.c: 40:             if (m1 > 5){
-  1100  06B9  0873               	movf	_m1+1,w
-  1101  06BA  3A80               	xorlw	128
-  1102  06BB  00FF               	movwf	127
-  1103  06BC  3080               	movlw	128
-  1104  06BD  027F               	subwf	127,w
-  1105  06BE  1D03               	skipz
-  1106  06BF  2EC2               	goto	u65
-  1107  06C0  3006               	movlw	6
-  1108  06C1  0272               	subwf	_m1,w
-  1109  06C2                     u65:	
-  1110  06C2  1C03               	skipc
-  1111  06C3  2ECE               	goto	l687
-  1112                           
-  1113                           ;main.c: 41:                 m1 = 0;
-  1114  06C4  01F2               	clrf	_m1
-  1115  06C5  01F3               	clrf	_m1+1
-  1116                           
-  1117                           ;main.c: 42:                 h2 = h2 + 1;
-  1118  06C6  0874               	movf	_h2,w
-  1119  06C7  3E01               	addlw	1
-  1120  06C8  00F4               	movwf	_h2
-  1121  06C9  0875               	movf	_h2+1,w
-  1122  06CA  1803               	skipnc
-  1123  06CB  3E01               	addlw	1
-  1124  06CC  3E00               	addlw	0
-  1125  06CD  00F5               	movwf	_h2+1
-  1126  06CE                     l687:	
+  1088                           ;main.c: 31:     if (TMR0 == 255){
+  1089                           
+  1090                           ;incstack = 0
+  1091                           ; Regs used in _addMinute: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+  1092  0673  1283               	bcf	3,5	;RP0=0, select bank0
+  1093  0674  1303               	bcf	3,6	;RP1=0, select bank0
+  1094  0675  0A01               	incf	1,w	;volatile
+  1095  0676  1D03               	btfss	3,2
+  1096  0677  0008               	return
+  1097                           
+  1098                           ;main.c: 32:         cnt = cnt + 1;
+  1099  0678  0826               	movf	_cnt,w
+  1100  0679  3E01               	addlw	1
+  1101  067A  00A6               	movwf	_cnt
+  1102  067B  0827               	movf	_cnt+1,w
+  1103  067C  1803               	skipnc
+  1104  067D  3E01               	addlw	1
+  1105  067E  3E00               	addlw	0
+  1106  067F  00A7               	movwf	_cnt+1
+  1107                           
+  1108                           ;main.c: 33:         TMR0 = timer0;
+  1109  0680  3000               	movlw	(low _timer0)& (0+255)
+  1110  0681  25D8               	fcall	___eetoc
+  1111  0682  1283               	bcf	3,5	;RP0=0, select bank0
+  1112  0683  1303               	bcf	3,6	;RP1=0, select bank0
+  1113  0684  0081               	movwf	1	;volatile
+  1114                           
+  1115                           ;main.c: 34:         if (cnt == 1500){
+  1116  0685  30DC               	movlw	220
+  1117  0686  0626               	xorwf	_cnt,w
+  1118  0687  3005               	movlw	5
+  1119  0688  1903               	skipnz
+  1120  0689  0627               	xorwf	_cnt+1,w
+  1121  068A  1D03               	btfss	3,2
+  1122  068B  0008               	return
+  1123                           
+  1124                           ;main.c: 35:             cnt = 0;
+  1125  068C  01A6               	clrf	_cnt
+  1126  068D  01A7               	clrf	_cnt+1
   1127                           
-  1128                           ;main.c: 44:             if (h2 > 9){
-  1129  06CE  0875               	movf	_h2+1,w
-  1130  06CF  3A80               	xorlw	128
-  1131  06D0  00FF               	movwf	127
-  1132  06D1  3080               	movlw	128
-  1133  06D2  027F               	subwf	127,w
-  1134  06D3  1D03               	skipz
-  1135  06D4  2ED7               	goto	u75
-  1136  06D5  300A               	movlw	10
-  1137  06D6  0274               	subwf	_h2,w
-  1138  06D7                     u75:	
-  1139  06D7  1C03               	skipc
-  1140  06D8  2EE3               	goto	l693
-  1141                           
-  1142                           ;main.c: 45:                 h2 = 0;
-  1143  06D9  01F4               	clrf	_h2
-  1144  06DA  01F5               	clrf	_h2+1
-  1145                           
-  1146                           ;main.c: 46:                 h1 = h1 + 1;
-  1147  06DB  0878               	movf	_h1,w
-  1148  06DC  3E01               	addlw	1
-  1149  06DD  00F8               	movwf	_h1
-  1150  06DE  0879               	movf	_h1+1,w
-  1151  06DF  1803               	skipnc
-  1152  06E0  3E01               	addlw	1
-  1153  06E1  3E00               	addlw	0
-  1154  06E2  00F9               	movwf	_h1+1
-  1155  06E3                     l693:	
-  1156                           
-  1157                           ;main.c: 48:             if (h1 >= 2){
-  1158  06E3  0879               	movf	_h1+1,w
-  1159  06E4  3A80               	xorlw	128
-  1160  06E5  00FF               	movwf	127
-  1161  06E6  3080               	movlw	128
-  1162  06E7  027F               	subwf	127,w
-  1163  06E8  1D03               	skipz
-  1164  06E9  2EEC               	goto	u85
-  1165  06EA  3002               	movlw	2
-  1166  06EB  0278               	subwf	_h1,w
-  1167  06EC                     u85:	
-  1168  06EC  1C03               	skipc
-  1169  06ED  0008               	return
-  1170                           
-  1171                           ;main.c: 49:                 if(h2 < 9 && h2 > 3 && h1 == 2){
-  1172  06EE  0875               	movf	_h2+1,w
-  1173  06EF  3A80               	xorlw	128
-  1174  06F0  00FF               	movwf	127
-  1175  06F1  3080               	movlw	128
-  1176  06F2  027F               	subwf	127,w
-  1177  06F3  1D03               	skipz
-  1178  06F4  2EF7               	goto	u95
-  1179  06F5  3009               	movlw	9
-  1180  06F6  0274               	subwf	_h2,w
-  1181  06F7                     u95:	
-  1182  06F7  1803               	skipnc
-  1183  06F8  0008               	return
-  1184  06F9  0875               	movf	_h2+1,w
-  1185  06FA  3A80               	xorlw	128
-  1186  06FB  00FF               	movwf	127
-  1187  06FC  3080               	movlw	128
-  1188  06FD  027F               	subwf	127,w
-  1189  06FE  1D03               	skipz
-  1190  06FF  2F02               	goto	u105
-  1191  0700  3004               	movlw	4
-  1192  0701  0274               	subwf	_h2,w
-  1193  0702                     u105:	
-  1194  0702  1C03               	skipc
-  1195  0703  0008               	return
-  1196  0704  3002               	movlw	2
-  1197  0705  0678               	xorwf	_h1,w
-  1198  0706  0479               	iorwf	_h1+1,w
-  1199  0707  1D03               	btfss	3,2
-  1200  0708  0008               	return
+  1128                           ;main.c: 36:             m2 = m2 + 1;
+  1129  068E  0820               	movf	_m2,w
+  1130  068F  3E01               	addlw	1
+  1131  0690  00A0               	movwf	_m2
+  1132  0691  0821               	movf	_m2+1,w
+  1133  0692  1803               	skipnc
+  1134  0693  3E01               	addlw	1
+  1135  0694  3E00               	addlw	0
+  1136  0695  00A1               	movwf	_m2+1
+  1137                           
+  1138                           ;main.c: 37:             if (m2 > 9){
+  1139  0696  0821               	movf	_m2+1,w
+  1140  0697  3A80               	xorlw	128
+  1141  0698  00FF               	movwf	127
+  1142  0699  3080               	movlw	128
+  1143  069A  027F               	subwf	127,w
+  1144  069B  1D03               	skipz
+  1145  069C  2E9F               	goto	u225
+  1146  069D  300A               	movlw	10
+  1147  069E  0220               	subwf	_m2,w
+  1148  069F                     u225:	
+  1149  069F  1C03               	skipc
+  1150  06A0  2EAD               	goto	l887
+  1151                           
+  1152                           ;main.c: 38:                 m2 = 0;
+  1153  06A1  1283               	bcf	3,5	;RP0=0, select bank0
+  1154  06A2  1303               	bcf	3,6	;RP1=0, select bank0
+  1155  06A3  01A0               	clrf	_m2
+  1156  06A4  01A1               	clrf	_m2+1
+  1157                           
+  1158                           ;main.c: 39:                 m1 = m1 + 1;
+  1159  06A5  0822               	movf	_m1,w
+  1160  06A6  3E01               	addlw	1
+  1161  06A7  00A2               	movwf	_m1
+  1162  06A8  0823               	movf	_m1+1,w
+  1163  06A9  1803               	skipnc
+  1164  06AA  3E01               	addlw	1
+  1165  06AB  3E00               	addlw	0
+  1166  06AC  00A3               	movwf	_m1+1
+  1167  06AD                     l887:	
+  1168                           
+  1169                           ;main.c: 41:             if (m1 > 5){
+  1170  06AD  1283               	bcf	3,5	;RP0=0, select bank0
+  1171  06AE  1303               	bcf	3,6	;RP1=0, select bank0
+  1172  06AF  0823               	movf	_m1+1,w
+  1173  06B0  3A80               	xorlw	128
+  1174  06B1  00FF               	movwf	127
+  1175  06B2  3080               	movlw	128
+  1176  06B3  027F               	subwf	127,w
+  1177  06B4  1D03               	skipz
+  1178  06B5  2EB8               	goto	u235
+  1179  06B6  3006               	movlw	6
+  1180  06B7  0222               	subwf	_m1,w
+  1181  06B8                     u235:	
+  1182  06B8  1C03               	skipc
+  1183  06B9  2EC6               	goto	l893
+  1184                           
+  1185                           ;main.c: 42:                 m1 = 0;
+  1186  06BA  1283               	bcf	3,5	;RP0=0, select bank0
+  1187  06BB  1303               	bcf	3,6	;RP1=0, select bank0
+  1188  06BC  01A2               	clrf	_m1
+  1189  06BD  01A3               	clrf	_m1+1
+  1190                           
+  1191                           ;main.c: 43:                 h2 = h2 + 1;
+  1192  06BE  087C               	movf	_h2,w
+  1193  06BF  3E01               	addlw	1
+  1194  06C0  00FC               	movwf	_h2
+  1195  06C1  087D               	movf	_h2+1,w
+  1196  06C2  1803               	skipnc
+  1197  06C3  3E01               	addlw	1
+  1198  06C4  3E00               	addlw	0
+  1199  06C5  00FD               	movwf	_h2+1
+  1200  06C6                     l893:	
   1201                           
-  1202                           ;main.c: 50:                     h2 = 0;
-  1203  0709  01F4               	clrf	_h2
-  1204  070A  01F5               	clrf	_h2+1
-  1205                           
-  1206                           ;main.c: 51:                     h1 = 0;
-  1207  070B  01F8               	clrf	_h1
-  1208  070C  01F9               	clrf	_h1+1
-  1209  070D  0008               	return
-  1210  070E                     __end_of_addMinute:	
-  1211                           ;main.c: 54:         }
-  1212                           
-  1213  007E                     btemp	set	126	;btemp
-  1214  007E                     wtemp0	set	126
+  1202                           ;main.c: 45:             if (h2 > 9){
+  1203  06C6  087D               	movf	_h2+1,w
+  1204  06C7  3A80               	xorlw	128
+  1205  06C8  00FF               	movwf	127
+  1206  06C9  3080               	movlw	128
+  1207  06CA  027F               	subwf	127,w
+  1208  06CB  1D03               	skipz
+  1209  06CC  2ECF               	goto	u245
+  1210  06CD  300A               	movlw	10
+  1211  06CE  027C               	subwf	_h2,w
+  1212  06CF                     u245:	
+  1213  06CF  1C03               	skipc
+  1214  06D0  2EDD               	goto	l899
+  1215                           
+  1216                           ;main.c: 46:                 h2 = 0;
+  1217  06D1  01FC               	clrf	_h2
+  1218  06D2  01FD               	clrf	_h2+1
+  1219                           
+  1220                           ;main.c: 47:                 h1 = h1 + 1;
+  1221  06D3  1283               	bcf	3,5	;RP0=0, select bank0
+  1222  06D4  1303               	bcf	3,6	;RP1=0, select bank0
+  1223  06D5  0824               	movf	_h1,w
+  1224  06D6  3E01               	addlw	1
+  1225  06D7  00A4               	movwf	_h1
+  1226  06D8  0825               	movf	_h1+1,w
+  1227  06D9  1803               	skipnc
+  1228  06DA  3E01               	addlw	1
+  1229  06DB  3E00               	addlw	0
+  1230  06DC  00A5               	movwf	_h1+1
+  1231  06DD                     l899:	
+  1232                           
+  1233                           ;main.c: 49:             if (h1 >= 2){
+  1234  06DD  1283               	bcf	3,5	;RP0=0, select bank0
+  1235  06DE  1303               	bcf	3,6	;RP1=0, select bank0
+  1236  06DF  0825               	movf	_h1+1,w
+  1237  06E0  3A80               	xorlw	128
+  1238  06E1  00FF               	movwf	127
+  1239  06E2  3080               	movlw	128
+  1240  06E3  027F               	subwf	127,w
+  1241  06E4  1D03               	skipz
+  1242  06E5  2EE8               	goto	u255
+  1243  06E6  3002               	movlw	2
+  1244  06E7  0224               	subwf	_h1,w
+  1245  06E8                     u255:	
+  1246  06E8  1C03               	skipc
+  1247  06E9  0008               	return
+  1248                           
+  1249                           ;main.c: 50:                 if(h2 < 9 && h2 > 3 && h1 == 2){
+  1250  06EA  087D               	movf	_h2+1,w
+  1251  06EB  3A80               	xorlw	128
+  1252  06EC  00FF               	movwf	127
+  1253  06ED  3080               	movlw	128
+  1254  06EE  027F               	subwf	127,w
+  1255  06EF  1D03               	skipz
+  1256  06F0  2EF3               	goto	u265
+  1257  06F1  3009               	movlw	9
+  1258  06F2  027C               	subwf	_h2,w
+  1259  06F3                     u265:	
+  1260  06F3  1803               	skipnc
+  1261  06F4  0008               	return
+  1262  06F5  087D               	movf	_h2+1,w
+  1263  06F6  3A80               	xorlw	128
+  1264  06F7  00FF               	movwf	127
+  1265  06F8  3080               	movlw	128
+  1266  06F9  027F               	subwf	127,w
+  1267  06FA  1D03               	skipz
+  1268  06FB  2EFE               	goto	u275
+  1269  06FC  3004               	movlw	4
+  1270  06FD  027C               	subwf	_h2,w
+  1271  06FE                     u275:	
+  1272  06FE  1C03               	skipc
+  1273  06FF  0008               	return
+  1274  0700  3002               	movlw	2
+  1275  0701  1283               	bcf	3,5	;RP0=0, select bank0
+  1276  0702  1303               	bcf	3,6	;RP1=0, select bank0
+  1277  0703  0624               	xorwf	_h1,w
+  1278  0704  0425               	iorwf	_h1+1,w
+  1279  0705  1D03               	btfss	3,2
+  1280  0706  0008               	return
+  1281                           
+  1282                           ;main.c: 51:                     h2 = 0;
+  1283  0707  01FC               	clrf	_h2
+  1284  0708  01FD               	clrf	_h2+1
+  1285                           
+  1286                           ;main.c: 52:                     h1 = 0;
+  1287  0709  01A4               	clrf	_h1
+  1288  070A  01A5               	clrf	_h1+1
+  1289  070B  0008               	return
+  1290  070C                     __end_of_addMinute:	
+  1291                           ;main.c: 55:         }
+  1292                           
+  1293                           
+  1294                           	psect	text4
+  1295  05D8                     __ptext4:	
+  1296 ;; *************** function ___eetoc *****************
+  1297 ;; Defined at:
+  1298 ;;		line 104 in file "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c"
+  1299 ;; Parameters:    Size  Location     Type
+  1300 ;;  addr            1    wreg     PTR eeprom void 
+  1301 ;;		 -> timer0(1), 
+  1302 ;; Auto vars:     Size  Location     Type
+  1303 ;;  addr            1    6[COMMON] PTR eeprom void 
+  1304 ;;		 -> timer0(1), 
+  1305 ;;  data            1    7[COMMON] unsigned char 
+  1306 ;; Return value:  Size  Location     Type
+  1307 ;;                  1    wreg      unsigned char 
+  1308 ;; Registers used:
+  1309 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1310 ;; Tracked objects:
+  1311 ;;		On entry : 0/0
+  1312 ;;		On exit  : 0/0
+  1313 ;;		Unchanged: 0/0
+  1314 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1315 ;;      Params:         0       0       0       0
+  1316 ;;      Locals:         2       0       0       0
+  1317 ;;      Temps:          1       0       0       0
+  1318 ;;      Totals:         3       0       0       0
+  1319 ;;Total ram usage:        3 bytes
+  1320 ;; Hardware stack levels used:    1
+  1321 ;; Hardware stack levels required when called:    1
+  1322 ;; This function calls:
+  1323 ;;		___eecpymem
+  1324 ;; This function is called by:
+  1325 ;;		_addMinute
+  1326 ;;		_main
+  1327 ;; This function uses a non-reentrant model
+  1328 ;;
+  1329                           
+  1330                           
+  1331                           ;psect for function ___eetoc
+  1332  05D8                     ___eetoc:	
+  1333                           
+  1334                           ;incstack = 0
+  1335                           ; Regs used in ___eetoc: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1336                           ;___eetoc@addr stored from wreg
+  1337  05D8  00F6               	movwf	___eetoc@addr
+  1338                           
+  1339                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 104: __eetoc
+      +                          (__eeprom void *addr);C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__e
+      +                          eprom.c: 105: {;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.
+      +                          c: 106:  unsigned char data;;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\
+      +                          pic\__eeprom.c: 107:  __eecpymem((unsigned char *) &data,addr,1);
+  1340  05D9  0876               	movf	___eetoc@addr,w
+  1341  05DA  00F5               	movwf	??___eetoc
+  1342  05DB  0875               	movf	??___eetoc,w
+  1343  05DC  00F0               	movwf	___eecpymem@from
+  1344  05DD  01F1               	clrf	___eecpymem@size
+  1345  05DE  0AF1               	incf	___eecpymem@size,f
+  1346  05DF  3077               	movlw	(low (___eetoc@data| 0))& (0+255)
+  1347  05E0  25F3               	fcall	___eecpymem
+  1348                           
+  1349                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 108:  return
+      +                           data;
+  1350  05E1  0877               	movf	___eetoc@data,w
+  1351  05E2  0008               	return
+  1352  05E3                     __end_of___eetoc:	
+  1353                           
+  1354                           	psect	text5
+  1355  05F3                     __ptext5:	
+  1356 ;; *************** function ___eecpymem *****************
+  1357 ;; Defined at:
+  1358 ;;		line 6 in file "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c"
+  1359 ;; Parameters:    Size  Location     Type
+  1360 ;;  to              1    wreg     PTR volatile unsigned ch
+  1361 ;;		 -> __eetofl@data(4), __eetoft@data(4), __eetoo@data(4), __eetol@data(4), 
+  1362 ;;		 -> __eetom@data(3), __eetoi@data(2), __eetoc@data(1), 
+  1363 ;;  from            1    0[COMMON] PTR eeprom unsigned char
+  1364 ;;		 -> timer0(1), 
+  1365 ;;  size            1    1[COMMON] unsigned char 
+  1366 ;; Auto vars:     Size  Location     Type
+  1367 ;;  to              1    4[COMMON] PTR volatile unsigned ch
+  1368 ;;		 -> __eetofl@data(4), __eetoft@data(4), __eetoo@data(4), __eetol@data(4), 
+  1369 ;;		 -> __eetom@data(3), __eetoi@data(2), __eetoc@data(1), 
+  1370 ;;  cp              1    3[COMMON] PTR volatile unsigned ch
+  1371 ;;		 -> __eetofl@data(4), __eetoft@data(4), __eetoo@data(4), __eetol@data(4), 
+  1372 ;;		 -> __eetom@data(3), __eetoi@data(2), __eetoc@data(1), 
+  1373 ;; Return value:  Size  Location     Type
+  1374 ;;                  1    wreg      void 
+  1375 ;; Registers used:
+  1376 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  1377 ;; Tracked objects:
+  1378 ;;		On entry : 0/0
+  1379 ;;		On exit  : 0/0
+  1380 ;;		Unchanged: 0/0
+  1381 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1382 ;;      Params:         2       0       0       0
+  1383 ;;      Locals:         2       0       0       0
+  1384 ;;      Temps:          1       0       0       0
+  1385 ;;      Totals:         5       0       0       0
+  1386 ;;Total ram usage:        5 bytes
+  1387 ;; Hardware stack levels used:    1
+  1388 ;; This function calls:
+  1389 ;;		Nothing
+  1390 ;; This function is called by:
+  1391 ;;		___eetoc
+  1392 ;; This function uses a non-reentrant model
+  1393 ;;
+  1394                           
+  1395                           
+  1396                           ;psect for function ___eecpymem
+  1397  05F3                     ___eecpymem:	
+  1398                           
+  1399                           ;incstack = 0
+  1400                           ; Regs used in ___eecpymem: [wreg-fsr0h+status,2+status,0]
+  1401                           ;___eecpymem@to stored from wreg
+  1402  05F3  00F4               	movwf	___eecpymem@to
+  1403                           
+  1404                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 6: __eecpyme
+      +                          m(volatile unsigned char *to, __eeprom unsigned char * from, unsigned char size);C:\Prog
+      +                          ram Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 6: };C:\Program File
+      +                          s (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 6: ;C:\Program Files (x86)\M
+      +                          icrochip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 6: ;C:\Program Files (x86)\Microchip\
+      +                          xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 6: };C:\Program Files (x86)\Microchip\xc8\v2.0
+      +                          5\pic\sources\c90\pic\__eeprom.c: 7: {
+  1405  05F4  0874               	movf	___eecpymem@to,w
+  1406  05F5  00F2               	movwf	??___eecpymem
+  1407  05F6  0872               	movf	??___eecpymem,w
+  1408  05F7  00F3               	movwf	___eecpymem@cp
+  1409  05F8                     l88:	
+  1410                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 10:  while (
+      +                          EECON1bits.WR) continue;;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\
+      +                          __eeprom.c: 10:  __memcpyee(addr,(unsigned char *) &data,2);;C:\Program Files (x86)\Micr
+      +                          ochip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 10: {
+  1411                           
+  1412  05F8  1683               	bsf	3,5	;RP0=1, select bank1
+  1413  05F9  1303               	bcf	3,6	;RP1=0, select bank1
+  1414  05FA  189C               	btfsc	28,1	;volsfr
+  1415  05FB  2DF8               	goto	l88
+  1416                           
+  1417                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 11:  EEADR =
+      +                           (unsigned char)from;;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__e
+      +                          eprom.c: 11:  return data;;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pi
+      +                          c\__eeprom.c: 11:  double data;
+  1418  05FC  0870               	movf	___eecpymem@from,w
+  1419  05FD  009B               	movwf	27	;volatile
+  1420  05FE                     l859:	
+  1421                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 12:  while(s
+      +                          ize--) {;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 12: 
+      +                          };C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 12:  __eecp
+      +                          ymem((unsigned char *) &data,addr,4);
+  1422                           
+  1423                           
+  1424                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 12:  while(s
+      +                          ize--) {;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 12: 
+      +                          };C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 12:  __eecp
+      +                          ymem((unsigned char *) &data,addr,4);
+  1425  05FE  3001               	movlw	1
+  1426  05FF  02F1               	subwf	___eecpymem@size,f
+  1427  0600  0A71               	incf	___eecpymem@size,w
+  1428  0601  1903               	btfsc	3,2
+  1429  0602  0008               	return
+  1430  0603                     l93:	
+  1431  0603  189C               	btfsc	28,1	;volsfr
+  1432  0604  2E03               	goto	l93
+  1433                           
+  1434                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 15:   EECON1
+      +                           &= 0x7F;;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 15:
+      +                           
+  1435  0605  307F               	movlw	127
+  1436  0606  00F2               	movwf	??___eecpymem
+  1437  0607  0872               	movf	??___eecpymem,w
+  1438  0608  059C               	andwf	28,f	;volsfr
+  1439                           
+  1440                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 17:   EECON1
+      +                          bits.RD = 1;;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 
+      +                          17: __fttoee(__eeprom void *addr, float data)
+  1441  0609  141C               	bsf	28,0	;volsfr
+  1442                           
+  1443                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 18:   *cp++ 
+      +                          = EEDATA;;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 18:
+      +                           {
+  1444  060A  081A               	movf	26,w	;volatile
+  1445  060B  00F2               	movwf	??___eecpymem
+  1446  060C  0873               	movf	___eecpymem@cp,w
+  1447  060D  0084               	movwf	4
+  1448  060E  0872               	movf	??___eecpymem,w
+  1449  060F  0080               	movwf	0
+  1450  0610  3001               	movlw	1
+  1451  0611  00F2               	movwf	??___eecpymem
+  1452  0612  0872               	movf	??___eecpymem,w
+  1453  0613  07F3               	addwf	___eecpymem@cp,f
+  1454                           
+  1455                           ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 19:   ++EEAD
+      +                          R;;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\pic\__eeprom.c: 19:  __mem
+      +                          cpyee(addr,(unsigned char *) &data,3);
+  1456  0614  3001               	movlw	1
+  1457  0615  00F2               	movwf	??___eecpymem
+  1458  0616  0872               	movf	??___eecpymem,w
+  1459  0617  079B               	addwf	27,f	;volatile
+  1460  0618  2DFE               	goto	l859
+  1461  0619                     __end_of___eecpymem:	
+  1462  007E                     btemp	set	126	;btemp
+  1463  007E                     wtemp0	set	126
 
 
 Data Sizes:
     Strings     0
     Constant    0
-    Data        0
-    BSS         4
-    Persistent  6
+    Data        1
+    BSS         2
+    Persistent  8
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           14      3      13
-    BANK0            80      0       0
+    COMMON           14     12      14
+    BANK0            80      0       8
     BANK1            80      0       0
     BANK2            48      0       0
 
 Pointer List with Targets:
 
-    None.
+    __eetoc@addr	PTR eeprom void  size(1) Largest target is 1
+		 -> timer0(EEDATA[1]), 
+
+    __eecpymem@from	PTR eeprom unsigned char  size(1) Largest target is 1
+		 -> timer0(EEDATA[1]), 
+
+    __eecpymem@to	PTR volatile unsigned char  size(1) Largest target is 4
+		 -> __eetofl@data(COMMON[4]), __eetoft@data(COMMON[4]), __eetoo@data(COMMON[4]), __eetol@data(COMMON[4]), 
+		 -> __eetom@data(COMMON[3]), __eetoi@data(COMMON[2]), __eetoc@data(COMMON[1]), 
+
+    __eecpymem@cp	PTR volatile unsigned char  size(1) Largest target is 4
+		 -> __eetofl@data(COMMON[4]), __eetoft@data(COMMON[4]), __eetoo@data(COMMON[4]), __eetol@data(COMMON[4]), 
+		 -> __eetom@data(COMMON[3]), __eetoi@data(COMMON[2]), __eetoc@data(COMMON[1]), 
+
 
 Critical Paths under _main in COMMON
 
     _main->_writeNumber
-    _writeNumber->_writeBit
+    _addMinute->___eetoc
+    ___eetoc->___eecpymem
 
 Critical Paths under _main in BANK0
 
@@ -1270,85 +1564,108 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 0     0      0     645
+ (0) _main                                                 0     0      0    3598
+                            ___eetoc
                         _writeNumber
  ---------------------------------------------------------------------------------
- (1) _writeNumber                                          2     0      2     645
-                                              1 COMMON     2     0      2
+ (1) _writeNumber                                          4     3      1    2235
+                                              8 COMMON     4     3      1
                           _addMinute
                            _writeBit
  ---------------------------------------------------------------------------------
- (2) _writeBit                                             1     1      0      15
+ (2) _writeBit                                             1     1      0      22
                                               0 COMMON     1     1      0
  ---------------------------------------------------------------------------------
- (2) _addMinute                                            0     0      0       0
+ (2) _addMinute                                            0     0      0    1363
+                            ___eetoc
  ---------------------------------------------------------------------------------
- Estimated maximum stack depth 2
+ (3) ___eetoc                                              3     3      0    1363
+                                              5 COMMON     3     3      0
+                         ___eecpymem
+ ---------------------------------------------------------------------------------
+ (4) ___eecpymem                                           5     3      2    1229
+                                              0 COMMON     5     3      2
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 4
  ---------------------------------------------------------------------------------
 
  Call Graph Graphs:
 
  _main (ROOT)
+   ___eetoc
+     ___eecpymem
    _writeNumber
      _addMinute
+       ___eetoc
+         ___eecpymem
      _writeBit
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
-BITCOMMON            E      0       0       0        0.0%
-EEDATA              80      0       0       0        0.0%
-NULL                 0      0       0       0        0.0%
-CODE                 0      0       0       0        0.0%
-COMMON               E      3       D       1       92.9%
-BITSFR0              0      0       0       1        0.0%
-SFR0                 0      0       0       1        0.0%
-BITSFR1              0      0       0       2        0.0%
-SFR1                 0      0       0       2        0.0%
-STACK                0      0       0       2        0.0%
-BANK0               50      0       0       3        0.0%
-BITSFR3              0      0       0       4        0.0%
 SFR3                 0      0       0       4        0.0%
-ABS                  0      0       D       4        0.0%
-BITBANK0            50      0       0       5        0.0%
-BITSFR2              0      0       0       5        0.0%
-SFR2                 0      0       0       5        0.0%
-BITBANK1            50      0       0       6        0.0%
-BANK1               50      0       0       7        0.0%
-BITBANK2            30      0       0       8        0.0%
+BITSFR3              0      0       0       4        0.0%
 BANK2               30      0       0       9        0.0%
-DATA                 0      0       D      10        0.0%
+BITBANK2            30      0       0       8        0.0%
+SFR2                 0      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK1            50      0       0       6        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR1              0      0       0       2        0.0%
+BANK0               50      0       8       3       10.0%
+BITBANK0            50      0       0       5        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+COMMON               E      C       E       1      100.0%
+BITCOMMON            E      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+DATA                 0      0      16      10        0.0%
+ABS                  0      0      16       4        0.0%
+NULL                 0      0       0       0        0.0%
+STACK                0      0       0       2        0.0%
+EEDATA              80      0       1       0        0.8%
 
 
 Microchip Technology PIC Macro Assembler V2.05 build -831301201 
-Symbol Table                                                                                   Sun Jun 02 02:23:32 2019
+Symbol Table                                                                                   Sun Jun 02 13:47:01 2019
 
-            __CFG_CP$OFF 0000           writeNumber@num 007B                       l50 07F5  
-                     u10 061F                       u24 0622                       u55 06AD  
-                     u65 06C2                       u75 06D7                       u85 06EC  
-                     u95 06F7                       _h1 0078                       _h2 0074  
-                     _m1 0072                       _m2 0070                      l821 0734  
-                    l831 0789                      l823 0745                      l681 06B9  
-                    l833 079A                      l825 0756                      l817 0712  
-                    l841 07CD                      l835 07AB                      l827 0767  
-                    l819 0723                      l693 06E3                      l837 07BC  
-                    l829 0778                      l687 06CE                      l927 07D2  
-                    l859 0643                      _RB1 0031                      _RB2 0032  
-                    _RB3 0033                      _RB4 0034                      _RB5 0035  
-                    _RB6 0036                      _RB7 0037                      u105 0702  
-           __CFG_CPD$OFF 0000                      _cnt 0076             __CFG_LVP$OFF 0000  
-                   _TMR0 0001                     _main 0625                     btemp 007E  
-                   start 0000                    ?_main 007A            __CFG_WDTE$OFF 0000  
-            _writeNumber 070E                    _PORTB 0006                    _TRISB 0086  
-          __CFG_PWRTE$ON 0000           __CFG_BOREN$OFF 0000                    status 0003  
-                  wtemp0 007E           __CFG_MCLRE$OFF 0000          __initialization 07FA  
-           __end_of_main 0684                   ??_main 007D         __end_of_writeBit 0625  
-     __size_of_addMinute 008A  __end_of__initialization 07FE           __pcstackCOMMON 007A  
-             __pnvCOMMON 0070               __pmaintext 0625        __end_of_addMinute 070E  
-           ?_writeNumber 007B                ?_writeBit 007A                  __ptext1 070E  
-                __ptext2 0615                  __ptext3 0684     end_of_initialization 07FE  
-           writeBit@_bit 007A               ??_writeBit 007A      start_initialization 07FA  
-   __size_of_writeNumber 00EC              __pbssCOMMON 0076                _addMinute 0684  
-              ___latbits 0000        __size_of_writeBit 0010               ?_addMinute 007A  
-            ??_addMinute 007A            __size_of_main 005F                 _writeBit 0615  
-          ??_writeNumber 007D      __CFG_FOSC$INTOSCCLK 0000               _OPTION_REG 0081  
-    __end_of_writeNumber 07FA  
+            __CFG_CP$OFF 0000           writeNumber@num 007B                       l52 07F7  
+                     l93 0603                       l88 05F8                       _h1 0024  
+                     _h2 007C                       _m1 0022                       _m2 0020  
+                    l911 0711                      l921 0766                      l913 0722  
+                    l931 07BB                      l923 0777                      l915 0733  
+                    l925 0788                      l917 0744                      l927 0799  
+                    l919 0755                      l935 07CC                      l929 07AA  
+                    l859 05FE                      l893 06C6                      l887 06AD  
+                    l959 063C                      l899 06DD                      _RB1 0031  
+                    _RB2 0032                      _RB3 0033                      _RB4 0034  
+                    _RB5 0035                      _RB6 0036                      _RB7 0037  
+                    u225 069F                      u235 06B8                      u180 05ED  
+                    u245 06CF                      u255 06E8                      u265 06F3  
+                    u194 05F0             __CFG_CPD$OFF 0000                      u275 06FE  
+                    _cnt 0026                      fsr0 0004                      indf 0000  
+           __CFG_LVP$OFF 0000                     l1027 07D4         writeNumber@point 0078  
+                   _TMR0 0001                     _main 0619                     btemp 007E  
+                   start 0000                    ?_main 0070          __end_of___eetoc 05E3  
+                  _EEADR 009B            __CFG_WDTE$OFF 0000              _writeNumber 070C  
+                  _PORTB 0006                    _TRISB 0086            __CFG_PWRTE$ON 0000  
+         __CFG_BOREN$OFF 0000                    status 0003                    wtemp0 007E  
+         __CFG_MCLRE$OFF 0000          __initialization 07FC             __end_of_main 0673  
+                 ??_main 007C                   _EEDATA 009A                   _EECON1 009C  
+              ??___eetoc 0075                   _timer0 0000             __pdataEEDATA 0000  
+       __end_of_writeBit 05F3               ___eecpymem 05F3       __size_of_addMinute 0099  
+__end_of__initialization 07FE           __pcstackCOMMON 0070               __pbssBANK0 0026  
+             __pnvCOMMON 007C               __pmaintext 0619        __end_of_addMinute 070C  
+           ?_writeNumber 0078              ?___eecpymem 0070                  ___eetoc 05D8  
+              ?_writeBit 0070                  __ptext1 070C                  __ptext2 05E3  
+                __ptext3 0673                  __ptext4 05D8                  __ptext5 05F3  
+   end_of_initialization 07FE             writeBit@_bit 0070      __size_of___eecpymem 0026  
+             ??_writeBit 0070            __pidataEEDATA 0000      start_initialization 07FC  
+   __size_of_writeNumber 00F0                _addMinute 0673                ___latbits 0000  
+           ??___eecpymem 0072                __pnvBANK0 0020                 ?___eetoc 0070  
+     __end_of___eecpymem 0619        __size_of_writeBit 0010               ?_addMinute 0070  
+             _EECON1bits 009C         __size_of___eetoc 000B              ??_addMinute 0078  
+          __size_of_main 005A                 _writeBit 05E3          ___eecpymem@from 0070  
+          ??_writeNumber 0079          ___eecpymem@size 0071      __CFG_FOSC$INTOSCCLK 0000  
+             _OPTION_REG 0081            ___eecpymem@cp 0073            ___eecpymem@to 0074  
+    __end_of_writeNumber 07FC             ___eetoc@addr 0076             ___eetoc@data 0077  
