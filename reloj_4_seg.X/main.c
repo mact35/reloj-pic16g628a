@@ -141,7 +141,7 @@ void write()
         RB6 = 0; //ST_CP PIN 12
         writeNumber(x);
         RB6 = 1;
-        __delay_ms(500);
+        __delay_ms(500); 
     }
 }
 
