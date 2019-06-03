@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.05 build -831301201 
-                                                                                               Sun Jun 02 14:23:16 2019
+                                                                                               Sun Jun 02 23:27:08 2019
 
 Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1 
      1                           	processor	16F628A
@@ -146,23 +146,23 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1
    132  0599                     __pidataBANK0:	
    133                           
    134                           ;initializer for _m2
-   135  0599  3405               	retlw	5
+   135  0599  3409               	retlw	9
    136                           
    137                           ;initializer for _m1
    138  059A  3402               	retlw	2
    139                           
    140                           ;initializer for _h2
-   141  059B  3404               	retlw	4
+   141  059B  3403               	retlw	3
    142                           
    143                           ;initializer for _h1
-   144  059C  3401               	retlw	1
+   144  059C  3402               	retlw	2
    145                           
    146                           	psect	idataEEDATA
    147  0000                     __pidataEEDATA:	
    148  0000                     _tiempo:	
    149                           ;initializer for _tiempo
    150                           
-   151  0000  00D7               	db	215
+   151  0000  00C3               	db	195
    152  0001  0005               	db	5
    153  0002                     _timer0:	
    154                           ;initializer for _timer0
@@ -1868,7 +1868,7 @@ EEDATA              80      0       3       0        2.3%
 
 
 Microchip Technology PIC Macro Assembler V2.05 build -831301201 
-Symbol Table                                                                                   Sun Jun 02 14:23:16 2019
+Symbol Table                                                                                   Sun Jun 02 23:27:08 2019
 
             __CFG_CP$OFF 0000           writeNumber@num 0023                       l59 07ED  
                      l95 05CD                       _h1 002C                       _h2 002B  

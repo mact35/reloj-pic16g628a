@@ -16,10 +16,10 @@
 #define _XTAL_FREQ 4000000 // Internal oscillator  
 #include <xc.h>
 
-unsigned char h1 = 1, h2 = 4, m1 = 2, m2 = 5, blink = 0, ant = 0;
+unsigned char h1 = 2, h2 = 3, m1 = 2, m2 = 9, blink = 0, ant = 0;
 unsigned short cnt = 0;
 __eeprom unsigned char timer0 = 98;
-__eeprom unsigned short tiempo = 1495;
+__eeprom unsigned short tiempo = 1475;
 //TMR0=256-(50ms)(4Mhz)/256-1
 //TMR0 = 256 - (10*4000)/256 -1
     
