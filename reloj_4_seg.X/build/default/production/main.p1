@@ -8,6 +8,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "59
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f628a.h: 59: extern volatile unsigned char TMR0 __attribute__((address(0x001)));
 [v _TMR0 `Vuc ~T0 @X0 0 e@1 ]
+"1482
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f628a.h: 1482: extern volatile __bit RB0 __attribute__((address(0x30)));
+[v _RB0 `Vb ~T0 @X0 0 e@48 ]
 "1500
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f628a.h: 1500: extern volatile __bit RB6 __attribute__((address(0x36)));
 [v _RB6 `Vb ~T0 @X0 0 e@54 ]
@@ -161,22 +164,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f628a.h: 1269: __asm("VRCON equ 09Fh");
 [; <" VRCON equ 09Fh ;# ">
 "19 main.c
-[; ;main.c: 19: unsigned char h1 = 2, h2 = 3, m1 = 2, m2 = 9, blink = 0, ant = 0;
+[; ;main.c: 19: unsigned char h1 = 2, h2 = 0, m1 =1, m2 = 7, blink = 0, ant = 0;
 [v _h1 `uc ~T0 @X0 1 e ]
 [i _h1
 -> -> 2 `i `uc
 ]
 [v _h2 `uc ~T0 @X0 1 e ]
 [i _h2
--> -> 3 `i `uc
+-> -> 0 `i `uc
 ]
 [v _m1 `uc ~T0 @X0 1 e ]
 [i _m1
--> -> 2 `i `uc
+-> -> 1 `i `uc
 ]
 [v _m2 `uc ~T0 @X0 1 e ]
 [i _m2
--> -> 9 `i `uc
+-> -> 7 `i `uc
 ]
 [v _blink `uc ~T0 @X0 1 e ]
 [i _blink
@@ -193,16 +196,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `us
 ]
 "21
-[; ;main.c: 21: __eeprom unsigned char timer0 = 98;
-[v _timer0 `Euc ~T0 @X0 1 e ]
-[i _timer0
--> -> 98 `i `uc
+[; ;main.c: 21: short tiempo = 915;
+[v _tiempo `s ~T0 @X0 1 e ]
+[i _tiempo
+-> -> 915 `i `s
 ]
 "22
-[; ;main.c: 22: __eeprom unsigned short tiempo = 1475;
-[v _tiempo `Eus ~T0 @X0 1 e ]
-[i _tiempo
--> -> 1475 `i `us
+[; ;main.c: 22: unsigned short acum = 5273;
+[v _acum `us ~T0 @X0 1 e ]
+[i _acum
+-> -> 5273 `i `us
+]
+"23
+[; ;main.c: 23: unsigned short suma = 0;
+[v _suma `us ~T0 @X0 1 e ]
+[i _suma
+-> -> 0 `i `us
 ]
 "26
 [; ;main.c: 26: void writeBit(char _bit)
@@ -247,206 +256,201 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 36:         cnt = cnt + 1;
 [e = _cnt -> + -> _cnt `ui -> -> 1 `i `ui `us ]
 "37
-[; ;main.c: 37:         TMR0 = timer0;
-[e = _TMR0 _timer0 ]
-"38
-[; ;main.c: 38:         if (ant != (cnt/15)){
-[e $ ! != -> _ant `ui / -> _cnt `ui -> -> 15 `i `ui 54  ]
+[; ;main.c: 37:         if (ant != (cnt/10)){
+[e $ ! != -> _ant `ui / -> _cnt `ui -> -> 10 `i `ui 54  ]
 {
+"38
+[; ;main.c: 38:             ant = cnt/10;
+[e = _ant -> / -> _cnt `ui -> -> 10 `i `ui `uc ]
 "39
-[; ;main.c: 39:             ant = cnt/15;
-[e = _ant -> / -> _cnt `ui -> -> 15 `i `ui `uc ]
-"40
-[; ;main.c: 40:             blink = !blink;
+[; ;main.c: 39:             blink = !blink;
 [e = _blink -> -> ! != -> _blink `i -> 0 `i `i `uc ]
-"41
-[; ;main.c: 41:         }
+"40
+[; ;main.c: 40:         }
 }
 [e :U 54 ]
-"42
-[; ;main.c: 42:         if (cnt >= tiempo){
+"41
+[; ;main.c: 41:         if (cnt >= tiempo){
 [e $ ! >= -> _cnt `ui -> _tiempo `ui 55  ]
 {
-"43
-[; ;main.c: 43:             cnt = 0;
-[e = _cnt -> -> 0 `i `us ]
+"42
+[; ;main.c: 42:             suma = suma + acum;
+[e = _suma -> + -> _suma `ui -> _acum `ui `us ]
 "44
-[; ;main.c: 44:             m2 = m2 + 1;
-[e = _m2 -> + -> _m2 `i -> 1 `i `uc ]
-"45
-[; ;main.c: 45:             if (m2 > 9){
-[e $ ! > -> _m2 `i -> 9 `i 56  ]
+[; ;main.c: 44:             if (tiempo == 900){
+[e $ ! == -> _tiempo `i -> 900 `i 56  ]
 {
+"45
+[; ;main.c: 45:                 tiempo = 915;
+[e = _tiempo -> -> 915 `i `s ]
 "46
-[; ;main.c: 46:                 m2 = 0;
-[e = _m2 -> -> 0 `i `uc ]
+[; ;main.c: 46:                 acum = 5273;
+[e = _acum -> -> 5273 `i `us ]
 "47
-[; ;main.c: 47:                 m1 = m1 + 1;
-[e = _m1 -> + -> _m1 `i -> 1 `i `uc ]
-"48
-[; ;main.c: 48:             }
+[; ;main.c: 47:             }
 }
 [e :U 56 ]
-"49
-[; ;main.c: 49:             if (m1 > 5){
-[e $ ! > -> _m1 `i -> 5 `i 57  ]
+"48
+[; ;main.c: 48:             if (suma >= 10000){
+[e $ ! >= -> _suma `ui -> -> 10000 `i `ui 57  ]
 {
+"49
+[; ;main.c: 49:                 suma = suma - 10000;
+[e = _suma -> - -> _suma `ui -> -> 10000 `i `ui `us ]
 "50
-[; ;main.c: 50:                 m1 = 0;
-[e = _m1 -> -> 0 `i `uc ]
+[; ;main.c: 50:                 tiempo = 900;
+[e = _tiempo -> -> 900 `i `s ]
 "51
-[; ;main.c: 51:                 h2 = h2 + 1;
-[e = _h2 -> + -> _h2 `i -> 1 `i `uc ]
+[; ;main.c: 51:                 acum = acum - 711;
+[e = _acum -> - -> _acum `ui -> -> 711 `i `ui `us ]
 "52
-[; ;main.c: 52:             }
+[; ;main.c: 52:                 RB0 = !RB0;
+[e = _RB0 ! _RB0 ]
+"53
+[; ;main.c: 53:             }
 }
 [e :U 57 ]
-"53
-[; ;main.c: 53:             if (h2 > 9){
-[e $ ! > -> _h2 `i -> 9 `i 58  ]
-{
-"54
-[; ;main.c: 54:                 h2 = 0;
-[e = _h2 -> -> 0 `i `uc ]
 "55
-[; ;main.c: 55:                 h1 = h1 + 1;
-[e = _h1 -> + -> _h1 `i -> 1 `i `uc ]
+[; ;main.c: 55:             cnt = 0;
+[e = _cnt -> -> 0 `i `us ]
 "56
-[; ;main.c: 56:             }
-}
-[e :U 58 ]
+[; ;main.c: 56:             m2 = m2 + 1;
+[e = _m2 -> + -> _m2 `i -> 1 `i `uc ]
 "57
-[; ;main.c: 57:             if (h1 >= 2){
-[e $ ! >= -> _h1 `i -> 2 `i 59  ]
+[; ;main.c: 57:             if (m2 > 9){
+[e $ ! > -> _m2 `i -> 9 `i 58  ]
 {
 "58
-[; ;main.c: 58:                 if(h2 < 9 && h2 > 3 && h1 == 2){
-[e $ ! && && < -> _h2 `i -> 9 `i > -> _h2 `i -> 3 `i == -> _h1 `i -> 2 `i 60  ]
-{
+[; ;main.c: 58:                 m2 = 0;
+[e = _m2 -> -> 0 `i `uc ]
 "59
-[; ;main.c: 59:                     h2 = 0;
-[e = _h2 -> -> 0 `i `uc ]
+[; ;main.c: 59:                 m1 = m1 + 1;
+[e = _m1 -> + -> _m1 `i -> 1 `i `uc ]
 "60
-[; ;main.c: 60:                     h1 = 0;
-[e = _h1 -> -> 0 `i `uc ]
-"61
-[; ;main.c: 61:                 }
+[; ;main.c: 60:             }
 }
-[e :U 60 ]
+[e :U 58 ]
+"61
+[; ;main.c: 61:             if (m1 > 5){
+[e $ ! > -> _m1 `i -> 5 `i 59  ]
+{
 "62
-[; ;main.c: 62:             }
+[; ;main.c: 62:                 m1 = 0;
+[e = _m1 -> -> 0 `i `uc ]
+"63
+[; ;main.c: 63:                 h2 = h2 + 1;
+[e = _h2 -> + -> _h2 `i -> 1 `i `uc ]
+"64
+[; ;main.c: 64:             }
 }
 [e :U 59 ]
-"63
-[; ;main.c: 63:         }
+"65
+[; ;main.c: 65:             if (h2 > 9){
+[e $ ! > -> _h2 `i -> 9 `i 60  ]
+{
+"66
+[; ;main.c: 66:                 h2 = 0;
+[e = _h2 -> -> 0 `i `uc ]
+"67
+[; ;main.c: 67:                 h1 = h1 + 1;
+[e = _h1 -> + -> _h1 `i -> 1 `i `uc ]
+"68
+[; ;main.c: 68:             }
+}
+[e :U 60 ]
+"69
+[; ;main.c: 69:             if (h1 >= 2){
+[e $ ! >= -> _h1 `i -> 2 `i 61  ]
+{
+"70
+[; ;main.c: 70:                 if(h2 < 9 && h2 > 3 && h1 == 2){
+[e $ ! && && < -> _h2 `i -> 9 `i > -> _h2 `i -> 3 `i == -> _h1 `i -> 2 `i 62  ]
+{
+"71
+[; ;main.c: 71:                     h2 = 0;
+[e = _h2 -> -> 0 `i `uc ]
+"72
+[; ;main.c: 72:                     h1 = 0;
+[e = _h1 -> -> 0 `i `uc ]
+"73
+[; ;main.c: 73:                 }
+}
+[e :U 62 ]
+"74
+[; ;main.c: 74:             }
+}
+[e :U 61 ]
+"75
+[; ;main.c: 75:         }
 }
 [e :U 55 ]
-"64
-[; ;main.c: 64:     }
+"77
+[; ;main.c: 77:     }
 }
 [e :U 53 ]
-"65
-[; ;main.c: 65: }
+"78
+[; ;main.c: 78: }
 [e :UE 52 ]
 }
-"67
-[; ;main.c: 67: void writeNumber(unsigned char num, unsigned char point){
+"80
+[; ;main.c: 80: void writeNumber(unsigned char num, unsigned char point){
 [v _writeNumber `(v ~T0 @X0 1 ef2`uc`uc ]
 {
 [e :U _writeNumber ]
 [v _num `uc ~T0 @X0 1 r1 ]
 [v _point `uc ~T0 @X0 1 r2 ]
 [f ]
-"68
-[; ;main.c: 68:     RB6 = 0;
-[e = _RB6 -> -> 0 `i `b ]
-"69
-[; ;main.c: 69:     switch (num)
-[e $U 63  ]
-"70
-[; ;main.c: 70:     {
-{
-"71
-[; ;main.c: 71:         case 1:
-[e :U 64 ]
-"72
-[; ;main.c: 72:             writeBit(point);
-[e ( _writeBit (1 -> _point `uc ]
-"73
-[; ;main.c: 73:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
-"74
-[; ;main.c: 74:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
-"75
-[; ;main.c: 75:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
-"76
-[; ;main.c: 76:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
-"77
-[; ;main.c: 77:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"78
-[; ;main.c: 78:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"79
-[; ;main.c: 79:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
-"80
-[; ;main.c: 80:             break;
-[e $U 62  ]
 "81
-[; ;main.c: 81:         case 2:
-[e :U 65 ]
+[; ;main.c: 81:     RB6 = 0;
+[e = _RB6 -> -> 0 `i `b ]
 "82
-[; ;main.c: 82:             writeBit(point);
-[e ( _writeBit (1 -> _point `uc ]
+[; ;main.c: 82:     switch (num)
+[e $U 65  ]
 "83
-[; ;main.c: 83:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 83:     {
+{
 "84
-[; ;main.c: 84:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 84:         case 1:
+[e :U 66 ]
 "85
-[; ;main.c: 85:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 85:             writeBit(point);
+[e ( _writeBit (1 -> _point `uc ]
 "86
-[; ;main.c: 86:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 86:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
 "87
 [; ;main.c: 87:             writeBit(1);
 [e ( _writeBit (1 -> -> 1 `i `uc ]
 "88
-[; ;main.c: 88:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 88:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
 "89
-[; ;main.c: 89:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 89:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
 "90
-[; ;main.c: 90:             break;
-[e $U 62  ]
-"91
-[; ;main.c: 91:         case 3:
-[e :U 66 ]
-"92
-[; ;main.c: 92:             writeBit(point);
-[e ( _writeBit (1 -> _point `uc ]
-"93
-[; ;main.c: 93:             writeBit(0);
+[; ;main.c: 90:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
+"91
+[; ;main.c: 91:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
+"92
+[; ;main.c: 92:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"93
+[; ;main.c: 93:             break;
+[e $U 64  ]
 "94
-[; ;main.c: 94:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 94:         case 2:
+[e :U 67 ]
 "95
-[; ;main.c: 95:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 95:             writeBit(point);
+[e ( _writeBit (1 -> _point `uc ]
 "96
 [; ;main.c: 96:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
 "97
-[; ;main.c: 97:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 97:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
 "98
 [; ;main.c: 98:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
@@ -454,53 +458,53 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 99:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
 "100
-[; ;main.c: 100:             break;
-[e $U 62  ]
+[; ;main.c: 100:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
 "101
-[; ;main.c: 101:         case 4:
-[e :U 67 ]
+[; ;main.c: 101:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "102
-[; ;main.c: 102:             writeBit(point);
-[e ( _writeBit (1 -> _point `uc ]
+[; ;main.c: 102:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "103
-[; ;main.c: 103:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 103:             break;
+[e $U 64  ]
 "104
-[; ;main.c: 104:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"105
-[; ;main.c: 105:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
-"106
-[; ;main.c: 106:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
-"107
-[; ;main.c: 107:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"108
-[; ;main.c: 108:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"109
-[; ;main.c: 109:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
-"110
-[; ;main.c: 110:             break;
-[e $U 62  ]
-"111
-[; ;main.c: 111:         case 5:
+[; ;main.c: 104:         case 3:
 [e :U 68 ]
-"112
-[; ;main.c: 112:             writeBit(point);
+"105
+[; ;main.c: 105:             writeBit(point);
 [e ( _writeBit (1 -> _point `uc ]
-"113
-[; ;main.c: 113:             writeBit(0);
+"106
+[; ;main.c: 106:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
-"114
-[; ;main.c: 114:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"115
-[; ;main.c: 115:             writeBit(1);
+"107
+[; ;main.c: 107:             writeBit(1);
 [e ( _writeBit (1 -> -> 1 `i `uc ]
+"108
+[; ;main.c: 108:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"109
+[; ;main.c: 109:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
+"110
+[; ;main.c: 110:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
+"111
+[; ;main.c: 111:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
+"112
+[; ;main.c: 112:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
+"113
+[; ;main.c: 113:             break;
+[e $U 64  ]
+"114
+[; ;main.c: 114:         case 4:
+[e :U 69 ]
+"115
+[; ;main.c: 115:             writeBit(point);
+[e ( _writeBit (1 -> _point `uc ]
 "116
 [; ;main.c: 116:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
@@ -511,26 +515,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 118:             writeBit(1);
 [e ( _writeBit (1 -> -> 1 `i `uc ]
 "119
-[; ;main.c: 119:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 119:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
 "120
-[; ;main.c: 120:             break;
-[e $U 62  ]
+[; ;main.c: 120:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "121
-[; ;main.c: 121:         case 6:
-[e :U 69 ]
+[; ;main.c: 121:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "122
-[; ;main.c: 122:             writeBit(point);
-[e ( _writeBit (1 -> _point `uc ]
+[; ;main.c: 122:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
 "123
-[; ;main.c: 123:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 123:             break;
+[e $U 64  ]
 "124
-[; ;main.c: 124:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 124:         case 5:
+[e :U 70 ]
 "125
-[; ;main.c: 125:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 125:             writeBit(point);
+[e ( _writeBit (1 -> _point `uc ]
 "126
 [; ;main.c: 126:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
@@ -544,26 +548,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 129:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
 "130
-[; ;main.c: 130:             break;
-[e $U 62  ]
+[; ;main.c: 130:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "131
-[; ;main.c: 131:         case 7:
-[e :U 70 ]
+[; ;main.c: 131:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
 "132
-[; ;main.c: 132:             writeBit(point);
-[e ( _writeBit (1 -> _point `uc ]
+[; ;main.c: 132:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "133
-[; ;main.c: 133:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 133:             break;
+[e $U 64  ]
 "134
-[; ;main.c: 134:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 134:         case 6:
+[e :U 71 ]
 "135
-[; ;main.c: 135:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 135:             writeBit(point);
+[e ( _writeBit (1 -> _point `uc ]
 "136
-[; ;main.c: 136:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 136:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "137
 [; ;main.c: 137:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
@@ -574,53 +578,53 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 139:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
 "140
-[; ;main.c: 140:             break;
-[e $U 62  ]
+[; ;main.c: 140:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "141
-[; ;main.c: 141:         case 8:
-[e :U 71 ]
-"142
-[; ;main.c: 142:             writeBit(point);
-[e ( _writeBit (1 -> _point `uc ]
-"143
-[; ;main.c: 143:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"144
-[; ;main.c: 144:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"145
-[; ;main.c: 145:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"146
-[; ;main.c: 146:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"147
-[; ;main.c: 147:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"148
-[; ;main.c: 148:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"149
-[; ;main.c: 149:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"150
-[; ;main.c: 150:             break;
-[e $U 62  ]
-"151
-[; ;main.c: 151:         case 9:
-[e :U 72 ]
-"152
-[; ;main.c: 152:             writeBit(point);
-[e ( _writeBit (1 -> _point `uc ]
-"153
-[; ;main.c: 153:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"154
-[; ;main.c: 154:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
-"155
-[; ;main.c: 155:             writeBit(1);
+[; ;main.c: 141:             writeBit(1);
 [e ( _writeBit (1 -> -> 1 `i `uc ]
+"142
+[; ;main.c: 142:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
+"143
+[; ;main.c: 143:             break;
+[e $U 64  ]
+"144
+[; ;main.c: 144:         case 7:
+[e :U 72 ]
+"145
+[; ;main.c: 145:             writeBit(point);
+[e ( _writeBit (1 -> _point `uc ]
+"146
+[; ;main.c: 146:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"147
+[; ;main.c: 147:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"148
+[; ;main.c: 148:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"149
+[; ;main.c: 149:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"150
+[; ;main.c: 150:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
+"151
+[; ;main.c: 151:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
+"152
+[; ;main.c: 152:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
+"153
+[; ;main.c: 153:             break;
+[e $U 64  ]
+"154
+[; ;main.c: 154:         case 8:
+[e :U 73 ]
+"155
+[; ;main.c: 155:             writeBit(point);
+[e ( _writeBit (1 -> _point `uc ]
 "156
 [; ;main.c: 156:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
@@ -634,23 +638,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 159:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
 "160
-[; ;main.c: 160:             break;
-[e $U 62  ]
+[; ;main.c: 160:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "161
-[; ;main.c: 161:         case 0:
-[e :U 73 ]
+[; ;main.c: 161:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "162
-[; ;main.c: 162:             writeBit(point);
-[e ( _writeBit (1 -> _point `uc ]
+[; ;main.c: 162:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "163
-[; ;main.c: 163:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 163:             break;
+[e $U 64  ]
 "164
-[; ;main.c: 164:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 164:         case 9:
+[e :U 74 ]
 "165
-[; ;main.c: 165:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 165:             writeBit(point);
+[e ( _writeBit (1 -> _point `uc ]
 "166
 [; ;main.c: 166:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
@@ -658,177 +662,213 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 167:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
 "168
-[; ;main.c: 168:             writeBit(0);
-[e ( _writeBit (1 -> -> 0 `i `uc ]
+[; ;main.c: 168:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
 "169
 [; ;main.c: 169:             writeBit(0);
 [e ( _writeBit (1 -> -> 0 `i `uc ]
 "170
-[; ;main.c: 170:             break;
-[e $U 62  ]
+[; ;main.c: 170:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "171
-[; ;main.c: 171:         case 10:
-[e :U 74 ]
+[; ;main.c: 171:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "172
-[; ;main.c: 172:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 172:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "173
-[; ;main.c: 173:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 173:             break;
+[e $U 64  ]
 "174
-[; ;main.c: 174:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 174:         case 0:
+[e :U 75 ]
 "175
-[; ;main.c: 175:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 175:             writeBit(point);
+[e ( _writeBit (1 -> _point `uc ]
 "176
 [; ;main.c: 176:             writeBit(1);
 [e ( _writeBit (1 -> -> 1 `i `uc ]
 "177
-[; ;main.c: 177:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 177:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "178
-[; ;main.c: 178:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 178:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "179
-[; ;main.c: 179:             writeBit(1);
-[e ( _writeBit (1 -> -> 1 `i `uc ]
+[; ;main.c: 179:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "180
-[; ;main.c: 180:             break;
-[e $U 62  ]
+[; ;main.c: 180:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
+"181
+[; ;main.c: 181:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "182
-[; ;main.c: 182:     }
-}
-[e $U 62  ]
-[e :U 63 ]
-[e [\ -> _num `i , $ -> 1 `i 64
- , $ -> 2 `i 65
- , $ -> 3 `i 66
- , $ -> 4 `i 67
- , $ -> 5 `i 68
- , $ -> 6 `i 69
- , $ -> 7 `i 70
- , $ -> 8 `i 71
- , $ -> 9 `i 72
- , $ -> 0 `i 73
- , $ -> 10 `i 74
- 62 ]
-[e :U 62 ]
+[; ;main.c: 182:             writeBit(0);
+[e ( _writeBit (1 -> -> 0 `i `uc ]
 "183
-[; ;main.c: 183:     RB6 = 1;
-[e = _RB6 -> -> 1 `i `b ]
+[; ;main.c: 183:             break;
+[e $U 64  ]
 "184
-[; ;main.c: 184:     addMinute();
-[e ( _addMinute ..  ]
+[; ;main.c: 184:         case 10:
+[e :U 76 ]
 "185
-[; ;main.c: 185: }
-[e :UE 61 ]
+[; ;main.c: 185:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"186
+[; ;main.c: 186:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"187
+[; ;main.c: 187:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"188
+[; ;main.c: 188:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"189
+[; ;main.c: 189:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"190
+[; ;main.c: 190:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"191
+[; ;main.c: 191:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"192
+[; ;main.c: 192:             writeBit(1);
+[e ( _writeBit (1 -> -> 1 `i `uc ]
+"193
+[; ;main.c: 193:             break;
+[e $U 64  ]
+"195
+[; ;main.c: 195:     }
+}
+[e $U 64  ]
+[e :U 65 ]
+[e [\ -> _num `i , $ -> 1 `i 66
+ , $ -> 2 `i 67
+ , $ -> 3 `i 68
+ , $ -> 4 `i 69
+ , $ -> 5 `i 70
+ , $ -> 6 `i 71
+ , $ -> 7 `i 72
+ , $ -> 8 `i 73
+ , $ -> 9 `i 74
+ , $ -> 0 `i 75
+ , $ -> 10 `i 76
+ 64 ]
+[e :U 64 ]
+"196
+[; ;main.c: 196:     RB6 = 1;
+[e = _RB6 -> -> 1 `i `b ]
+"197
+[; ;main.c: 197:     addMinute();
+[e ( _addMinute ..  ]
+"198
+[; ;main.c: 198: }
+[e :UE 63 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"187
-[; ;main.c: 187: void main(void) {
+"200
+[; ;main.c: 200: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"188
-[; ;main.c: 188:     TRISB = 0b00000000;
-[e = _TRISB -> -> 0 `i `uc ]
-"189
-[; ;main.c: 189:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
-"190
-[; ;main.c: 190:     OPTION_REG = 0b00000111;
-[e = _OPTION_REG -> -> 7 `i `uc ]
-"192
-[; ;main.c: 192:     TMR0 = timer0;
-[e = _TMR0 _timer0 ]
-"194
-[; ;main.c: 194:     while(1){
-[e :U 77 ]
-{
-"195
-[; ;main.c: 195:         RB1 = 1;
-[e = _RB1 -> -> 1 `i `b ]
-"196
-[; ;main.c: 196:         RB2 = 0;
-[e = _RB2 -> -> 0 `i `b ]
-"197
-[; ;main.c: 197:         RB3 = 0;
-[e = _RB3 -> -> 0 `i `b ]
-"198
-[; ;main.c: 198:         RB4 = 0;
-[e = _RB4 -> -> 0 `i `b ]
-"199
-[; ;main.c: 199:         writeNumber(h1,1);
-[e ( _writeNumber (2 , _h1 -> -> 1 `i `uc ]
-"200
-[; ;main.c: 200:         writeNumber(10,1);
-[e ( _writeNumber (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
 "201
-[; ;main.c: 201:         RB1 = 0;
-[e = _RB1 -> -> 0 `i `b ]
+[; ;main.c: 201:     TRISB = 0b00000000;
+[e = _TRISB -> -> 0 `i `uc ]
 "202
-[; ;main.c: 202:         RB2 = 1;
-[e = _RB2 -> -> 1 `i `b ]
+[; ;main.c: 202:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "203
-[; ;main.c: 203:         RB3 = 0;
-[e = _RB3 -> -> 0 `i `b ]
-"204
-[; ;main.c: 204:         RB4 = 0;
-[e = _RB4 -> -> 0 `i `b ]
+[; ;main.c: 203:     OPTION_REG = 0b00000111;
+[e = _OPTION_REG -> -> 7 `i `uc ]
 "205
-[; ;main.c: 205:         writeNumber(h2,blink);
-[e ( _writeNumber (2 , _h2 _blink ]
+[; ;main.c: 205:     while(1){
+[e :U 79 ]
+{
 "206
-[; ;main.c: 206:         writeNumber(10,1);
-[e ( _writeNumber (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 206:         RB1 = 1;
+[e = _RB1 -> -> 1 `i `b ]
 "207
-[; ;main.c: 207:         RB1 = 0;
-[e = _RB1 -> -> 0 `i `b ]
+[; ;main.c: 207:         RB2 = 0;
+[e = _RB2 -> -> 0 `i `b ]
 "208
-[; ;main.c: 208:         RB2 = 0;
-[e = _RB2 -> -> 0 `i `b ]
-"209
-[; ;main.c: 209:         RB3 = 1;
-[e = _RB3 -> -> 1 `i `b ]
-"210
-[; ;main.c: 210:         RB4 = 0;
-[e = _RB4 -> -> 0 `i `b ]
-"211
-[; ;main.c: 211:         writeNumber(m1,blink);
-[e ( _writeNumber (2 , _m1 _blink ]
-"212
-[; ;main.c: 212:         writeNumber(10,1);
-[e ( _writeNumber (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
-"213
-[; ;main.c: 213:         RB1 = 0;
-[e = _RB1 -> -> 0 `i `b ]
-"214
-[; ;main.c: 214:         RB2 = 0;
-[e = _RB2 -> -> 0 `i `b ]
-"215
-[; ;main.c: 215:         RB3 = 0;
+[; ;main.c: 208:         RB3 = 0;
 [e = _RB3 -> -> 0 `i `b ]
-"216
-[; ;main.c: 216:         RB4 = 1;
-[e = _RB4 -> -> 1 `i `b ]
-"217
-[; ;main.c: 217:         writeNumber(m2,1);
-[e ( _writeNumber (2 , _m2 -> -> 1 `i `uc ]
-"218
-[; ;main.c: 218:         writeNumber(10,1);
+"209
+[; ;main.c: 209:         RB4 = 0;
+[e = _RB4 -> -> 0 `i `b ]
+"210
+[; ;main.c: 210:         writeNumber(h1,1);
+[e ( _writeNumber (2 , _h1 -> -> 1 `i `uc ]
+"211
+[; ;main.c: 211:         writeNumber(10,1);
 [e ( _writeNumber (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
+"212
+[; ;main.c: 212:         RB1 = 0;
+[e = _RB1 -> -> 0 `i `b ]
+"213
+[; ;main.c: 213:         RB2 = 1;
+[e = _RB2 -> -> 1 `i `b ]
+"214
+[; ;main.c: 214:         RB3 = 0;
+[e = _RB3 -> -> 0 `i `b ]
+"215
+[; ;main.c: 215:         RB4 = 0;
+[e = _RB4 -> -> 0 `i `b ]
+"216
+[; ;main.c: 216:         writeNumber(h2,blink);
+[e ( _writeNumber (2 , _h2 _blink ]
+"217
+[; ;main.c: 217:         writeNumber(10,1);
+[e ( _writeNumber (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
+"218
+[; ;main.c: 218:         RB1 = 0;
+[e = _RB1 -> -> 0 `i `b ]
 "219
-[; ;main.c: 219:     }
-}
-[e :U 76 ]
-[e $U 77  ]
-[e :U 78 ]
+[; ;main.c: 219:         RB2 = 0;
+[e = _RB2 -> -> 0 `i `b ]
 "220
-[; ;main.c: 220:     return;
-[e $UE 75  ]
+[; ;main.c: 220:         RB3 = 1;
+[e = _RB3 -> -> 1 `i `b ]
 "221
-[; ;main.c: 221: }
-[e :UE 75 ]
+[; ;main.c: 221:         RB4 = 0;
+[e = _RB4 -> -> 0 `i `b ]
+"222
+[; ;main.c: 222:         writeNumber(m1,blink);
+[e ( _writeNumber (2 , _m1 _blink ]
+"223
+[; ;main.c: 223:         writeNumber(10,1);
+[e ( _writeNumber (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
+"224
+[; ;main.c: 224:         RB1 = 0;
+[e = _RB1 -> -> 0 `i `b ]
+"225
+[; ;main.c: 225:         RB2 = 0;
+[e = _RB2 -> -> 0 `i `b ]
+"226
+[; ;main.c: 226:         RB3 = 0;
+[e = _RB3 -> -> 0 `i `b ]
+"227
+[; ;main.c: 227:         RB4 = 1;
+[e = _RB4 -> -> 1 `i `b ]
+"228
+[; ;main.c: 228:         writeNumber(m2,1);
+[e ( _writeNumber (2 , _m2 -> -> 1 `i `uc ]
+"229
+[; ;main.c: 229:         writeNumber(10,1);
+[e ( _writeNumber (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
+"230
+[; ;main.c: 230:     }
+}
+[e :U 78 ]
+[e $U 79  ]
+[e :U 80 ]
+"231
+[; ;main.c: 231:     return;
+[e $UE 77  ]
+"232
+[; ;main.c: 232: }
+[e :UE 77 ]
 }

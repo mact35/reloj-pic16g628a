@@ -1016,11 +1016,11 @@ extern __bank0 __bit __timeout;
 # 17 "main.c" 2
 
 
-unsigned char h1 = 2, h2 = 3, m1 = 2, m2 = 9, blink = 0, ant = 0;
+unsigned char h1 = 2, h2 = 0, m1 =1, m2 = 7, blink = 0, ant = 0;
 unsigned short cnt = 0;
-__eeprom unsigned char timer0 = 98;
-__eeprom unsigned short tiempo = 1475;
-
+short tiempo = 915;
+unsigned short acum = 5273;
+unsigned short suma = 0;
 
 
 void writeBit(char _bit)
@@ -1034,12 +1034,24 @@ void writeBit(char _bit)
 void addMinute(){
     if (TMR0 == 255){
         cnt = cnt + 1;
-        TMR0 = timer0;
-        if (ant != (cnt/15)){
-            ant = cnt/15;
+        if (ant != (cnt/10)){
+            ant = cnt/10;
             blink = !blink;
         }
         if (cnt >= tiempo){
+            suma = suma + acum;
+
+            if (tiempo == 900){
+                tiempo = 915;
+                acum = 5273;
+            }
+            if (suma >= 10000){
+                suma = suma - 10000;
+                tiempo = 900;
+                acum = acum - 711;
+                RB0 = !RB0;
+            }
+
             cnt = 0;
             m2 = m2 + 1;
             if (m2 > 9){
@@ -1061,6 +1073,7 @@ void addMinute(){
                 }
             }
         }
+
     }
 }
 
@@ -1188,8 +1201,6 @@ void main(void) {
     TRISB = 0b00000000;
     PORTB = 0;
     OPTION_REG = 0b00000111;
-
-    TMR0 = timer0;
 
     while(1){
         RB1 = 1;
