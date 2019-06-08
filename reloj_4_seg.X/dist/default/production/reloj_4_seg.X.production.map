@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.05\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\reloj_4_seg.X.production.sym \
   --cmf=dist/default/production\reloj_4_seg.X.production.cmf -z -Q16F628A \
-  -oC:\Users\mact3\AppData\Local\Temp\sgdg.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\mact3\AppData\Local\Temp\s42s.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/reloj_4_seg.X.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=0A0h-0EFh -pstack=STACK -ACODE=00h-07FFh \
   -ASTRCODE=00h-07FFh -ASTRING=00h-0FFhx8 -ACONST=00h-0FFhx8 \
@@ -17,7 +17,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=02007h-02007h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-07Fh/02100h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\mact3\AppData\Local\Temp\sgdg.o \
+  -DENTRY=2 -k C:\Users\mact3\AppData\Local\Temp\s42s.o \
   dist/default/production\reloj_4_seg.X.production.o 
 
 Object code version is 3.11
@@ -27,34 +27,34 @@ Machine type is 16F628A
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\mact3\AppData\Local\Temp\sgdg.o
+C:\Users\mact3\AppData\Local\Temp\s42s.o
                 end_init                              0        0        1        0       0
                 config                             2007     2007        1     400E       0
 dist/default/production\reloj_4_seg.X.production.o
-                cinit                               7E9      7E9       17      FD2       0
-                text4                               5C7      5C7       3C      B8E       0
-                text3                               64A      64A       AF      C94       0
-                text2                               5B7      5B7       10      B6E       0
-                text1                               6F9      6F9       F0      DF2       0
-                maintext                            603      603       47      C06       0
+                cinit                               7EA      7EA       16      FD4       0
+                text4                               5C6      5C6       3C      B8C       0
+                text3                               649      649       B1      C92       0
+                text2                               5B6      5B6       10      B6C       0
+                text1                               6FA      6FA       F0      DF4       0
+                maintext                            602      602       47      C04       0
                 cstackBANK0                          2E       2E        1       20       1
                 cstackCOMMON                         70       70        E       70       1
-                dataBANK0                            27       27        7       20       1
-                bssBANK0                             20       20        7       20       1
-                idataBANK0                          5B0      5B0        7      B60       0
+                dataBANK0                            28       28        6       20       1
+                bssBANK0                             20       20        8       20       1
+                idataBANK0                          5B0      5B0        6      B60       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
 
         CLASS   CODE           
                 end_init                              0        0        1         0
-                cinit                               7E9      7E9       17         0
-                text4                               5C7      5C7       3C         0
-                text3                               64A      64A       AF         0
-                text2                               5B7      5B7       10         0
-                text1                               6F9      6F9       F0         0
-                maintext                            603      603       47         0
-                idataBANK0                          5B0      5B0        7         0
+                cinit                               7EA      7EA       16         0
+                text4                               5C6      5C6       3C         0
+                text3                               649      649       B1         0
+                text2                               5B6      5B6       10         0
+                text1                               6FA      6FA       F0         0
+                maintext                            602      602       47         0
+                idataBANK0                          5B0      5B0        6         0
 
         CLASS   STRCODE        
 
@@ -69,8 +69,8 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   BANK0          
                 cstackBANK0                          2E       2E        1         1
-                dataBANK0                            27       27        7         1
-                bssBANK0                             20       20        7         1
+                dataBANK0                            28       28        6         1
+                bssBANK0                             20       20        8         1
 
         CLASS   BANK1          
 
@@ -105,13 +105,13 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 reset_vec                      000000  000001  000001         0       0  CODE        2
                 bssBANK0                       000020  00000F  00002F        20       1  BANK0       1
                 cstackCOMMON                   000070  00000E  00007E        70       1  COMMON      1
-                idataBANK0                     0005B0  000007  0005B7       B60       0  CODE        2
-                text2                          0005B7  000010  0005C7       B6E       0  CODE        2
-                text4                          0005C7  00003C  000603       B8E       0  CODE        2
-                maintext                       000603  000047  00064A       C06       0  CODE        2
-                text3                          00064A  0000AF  0006F9       C94       0  CODE        2
-                text1                          0006F9  0000F0  0007E9       DF2       0  CODE        2
-                cinit                          0007E9  000017  000800       FD2       0  CODE        2
+                idataBANK0                     0005B0  000006  0005B6       B60       0  CODE        2
+                text2                          0005B6  000010  0005C6       B6C       0  CODE        2
+                text4                          0005C6  00003C  000602       B8C       0  CODE        2
+                maintext                       000602  000047  000649       C04       0  CODE        2
+                text3                          000649  0000B1  0006FA       C92       0  CODE        2
+                text1                          0006FA  0000F0  0007EA       DF4       0  CODE        2
+                cinit                          0007EA  000016  000800       FD4       0  CODE        2
                 config                         002007  000001  002008      400E       0  CONFIG      2
 
 
@@ -202,7 +202,7 @@ __Lbank1                 bank1        0000
 __Lbank2                 bank2        0000
 __Lbank3                 bank3        0000
 __LbssBANK0              bssBANK0     0000
-__Lcinit                 cinit        07E9
+__Lcinit                 cinit        07EA
 __Lclrtext               clrtext      0000
 __Lcode                  code         0000
 __Lcommon                common       0000
@@ -238,7 +238,7 @@ __S2                     (abs)        0000
 __S3                     (abs)        0000
 ___int_sp                stack        0000
 ___latbits               (abs)        0000
-___lwdiv                 text4        05C7
+___lwdiv                 text4        05C6
 ___lwdiv@counter         cstackCOMMON 0077
 ___lwdiv@dividend        cstackCOMMON 0072
 ___lwdiv@divisor         cstackCOMMON 0070
@@ -246,42 +246,41 @@ ___lwdiv@quotient        cstackCOMMON 0075
 ___sp                    stack        0000
 ___stackhi               (abs)        0000
 ___stacklo               (abs)        0000
-__end_of___lwdiv         text4        0603
+__end_of___lwdiv         text4        0602
 __end_of__initialization cinit        07FE
-__end_of_addMinute       text3        06F9
-__end_of_main            maintext     064A
-__end_of_writeBit        text2        05C7
-__end_of_writeNumber     text1        07E9
-__initialization         cinit        07E9
+__end_of_addMinute       text3        06FA
+__end_of_main            maintext     0649
+__end_of_writeBit        text2        05C6
+__end_of_writeNumber     text1        07EA
+__initialization         cinit        07EA
 __pbssBANK0              bssBANK0     0020
 __pcstackBANK0           cstackBANK0  002E
 __pcstackCOMMON          cstackCOMMON 0070
-__pdataBANK0             dataBANK0    0027
+__pdataBANK0             dataBANK0    0028
 __pidataBANK0            idataBANK0   05B0
-__pmaintext              maintext     0603
-__ptext1                 text1        06F9
-__ptext2                 text2        05B7
-__ptext3                 text3        064A
-__ptext4                 text4        05C7
+__pmaintext              maintext     0602
+__ptext1                 text1        06FA
+__ptext2                 text2        05B6
+__ptext3                 text3        0649
+__ptext4                 text4        05C6
 __size_of___lwdiv        (abs)        0000
 __size_of_addMinute      (abs)        0000
 __size_of_main           (abs)        0000
 __size_of_writeBit       (abs)        0000
 __size_of_writeNumber    (abs)        0000
-_acum                    dataBANK0    0027
-_addMinute               text3        064A
+_addMinute               text3        0649
 _ant                     bssBANK0     0024
 _blink                   bssBANK0     0025
 _cnt                     bssBANK0     0022
-_h1                      dataBANK0    002D
+_h1                      bssBANK0     0027
 _h2                      bssBANK0     0026
-_m1                      dataBANK0    002C
-_m2                      dataBANK0    002B
-_main                    maintext     0603
+_m1                      dataBANK0    002D
+_m2                      dataBANK0    002C
+_main                    maintext     0602
 _suma                    bssBANK0     0020
-_tiempo                  dataBANK0    0029
-_writeBit                text2        05B7
-_writeNumber             text1        06F9
+_tiempo                  dataBANK0    002A
+_writeBit                text2        05B6
+_writeNumber             text1        06FA
 btemp                    (abs)        007E
 end_of_initialization    cinit        07FE
 intlevel0                functab      0000
@@ -292,7 +291,7 @@ intlevel4                functab      0000
 intlevel5                functab      0000
 reset_vec                reset_vec    0000
 start                    init         0000
-start_initialization     cinit        07E9
+start_initialization     cinit        07EA
 writeBit@_bit            cstackCOMMON 0070
 writeNumber@num          cstackCOMMON 007D
 writeNumber@point        cstackCOMMON 007A
@@ -303,7 +302,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 200 in file "main.c"
+		line 201 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -311,7 +310,7 @@ FUNCTION INFORMATION:
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -332,7 +331,7 @@ Total ram usage:        1 bytes
 
  *************** function _writeNumber *****************
  Defined at:
-		line 80 in file "main.c"
+		line 81 in file "main.c"
  Parameters:    Size  Location     Type
   num             1    wreg     unsigned char 
   point           1   10[COMMON] unsigned char 
@@ -341,7 +340,7 @@ Total ram usage:        1 bytes
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -401,7 +400,7 @@ Total ram usage:        1 bytes
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, status,2, status,0, pclath, cstack
+		wreg, status,2, status,0, btemp+1, pclath, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -457,20 +456,20 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\lwdiv.c
-		___lwdiv       		CODE           	05C7	0000	61
+		___lwdiv       		CODE           	05C6	0000	61
 
 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\lwdiv.c estimated size: 61
 
 shared
-		__initialization		CODE           	07E9	0000	22
+		__initialization		CODE           	07EA	0000	21
 
-shared estimated size: 22
+shared estimated size: 21
 
 main.c
-		_writeNumber   		CODE           	06F9	0000	241
-		_main          		CODE           	0603	0000	72
-		_addMinute     		CODE           	064A	0000	176
-		_writeBit      		CODE           	05B7	0000	17
+		_writeNumber   		CODE           	06FA	0000	241
+		_main          		CODE           	0602	0000	72
+		_addMinute     		CODE           	0649	0000	178
+		_writeBit      		CODE           	05B6	0000	17
 
-main.c estimated size: 506
+main.c estimated size: 508
 

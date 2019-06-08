@@ -16,7 +16,7 @@
 #define _XTAL_FREQ 4000000      // Internal oscillator  
 #include <xc.h>
 
-unsigned char h1 = 2, h2 = 0, m1 =1, m2 = 7, blink = 0, ant = 0;
+unsigned char h1 = 0, h2 = 0, m1 =2, m2 = 5, blink = 0, ant = 0;
 unsigned short cnt = 0;
 short tiempo = 915;
 unsigned short acum = 5273;
@@ -41,14 +41,15 @@ void addMinute(){
         if (cnt >= tiempo){ 
             suma = suma + acum; 
             
-            if (tiempo == 900){
+            if (tiempo > 916){
                 tiempo = 915;
-                acum = 5273;
+                suma = 0;
+                //acum = 5273;
             }
             if (suma >= 10000){
                 suma = suma - 10000;
-                tiempo = 900;
-                acum = acum - 711;
+                tiempo = tiempo + 1;
+                //acum = acum - 656;
                 RB0 = !RB0;
             }
                    
